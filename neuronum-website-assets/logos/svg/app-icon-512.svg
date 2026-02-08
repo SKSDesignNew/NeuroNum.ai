@@ -1,0 +1,39 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+<style>
+  @keyframes synapseFire{0%,100%{opacity:.2;r:6}30%{opacity:1;r:10}}
+  @keyframes dendritePulse{0%,100%{opacity:.3;stroke-width:2.5}40%{opacity:.8;stroke-width:4}}
+  @keyframes nucleusBeat{0%,100%{r:12;opacity:.5}50%{r:18;opacity:1}}
+  @keyframes barPulse2{0%,100%{height:60;y:10;opacity:.5}50%{height:80;y:-10;opacity:.7}}
+  @keyframes barPulse3{0%,100%{height:90;y:-20;opacity:.7}50%{height:110;y:-40;opacity:.9}}
+  @keyframes trendGlow{0%,100%{opacity:.4;stroke-width:3}50%{opacity:.9;stroke-width:5}}
+  @keyframes candleFlicker{0%,100%{opacity:.4}50%{opacity:.9}}
+  .s1{animation:synapseFire 2.2s ease-in-out infinite}
+  .s2{animation:synapseFire 2.2s ease-in-out infinite .5s}
+  .s3{animation:synapseFire 2.2s ease-in-out infinite 1s}
+  .d1{animation:dendritePulse 2.2s ease-in-out infinite}
+  .d2{animation:dendritePulse 2.2s ease-in-out infinite .5s}
+  .d3{animation:dendritePulse 2.2s ease-in-out infinite 1s}
+  .nc{animation:nucleusBeat 1.8s ease-in-out infinite}
+  .b2{animation:barPulse2 3.5s ease-in-out infinite .3s}
+  .b3{animation:barPulse3 3.5s ease-in-out infinite .6s}
+  .tl{animation:trendGlow 2s ease-in-out infinite}
+  .cf{animation:candleFlicker 1.5s ease-in-out infinite}
+</style>
+<defs><linearGradient id="g" x1="0" y1="0" x2="512" y2="512"><stop stop-color="#0a0a14"/><stop offset="1" stop-color="#1a0a2e"/></linearGradient></defs>
+<rect width="512" height="512" rx="115" fill="url(#g)"/>
+<g transform="translate(256,256)">
+  <line x1="-110" y1="-80" x2="-60" y2="-40" stroke="#00ffc8" class="d1"/>
+  <line x1="-120" y1="15" x2="-70" y2="8" stroke="#00ffc8" class="d2"/>
+  <line x1="-100" y1="75" x2="-60" y2="42" stroke="#00ffc8" class="d3"/>
+  <circle cx="-110" cy="-80" fill="#00ffc8" class="s1"/>
+  <circle cx="-120" cy="15" fill="#00ffc8" class="s2"/>
+  <circle cx="-100" cy="75" fill="#00ffc8" class="s3"/>
+  <circle cx="-28" cy="0" r="42" fill="rgba(0,255,200,0.04)" stroke="#00ffc8" stroke-width="2.5"/>
+  <circle cx="-28" cy="0" fill="#00ffc8" class="nc"/>
+  <rect x="30" y="15" width="18" height="50" rx="5" fill="#ff3cac" class="b2"/>
+  <rect x="58" y="-10" width="18" height="75" rx="5" fill="#ff3cac" class="b2"/>
+  <rect x="86" y="-45" width="18" height="110" rx="5" fill="#ff3cac" class="b3"/>
+  <polyline points="39,5 67,-20 95,-50" stroke="#ff3cac" stroke-width="3" stroke-linecap="round" fill="none" class="tl"/>
+  <circle cx="95" cy="-50" r="8" fill="#ff3cac" class="cf"/>
+</g>
+</svg>
