@@ -1,0 +1,128 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  NeuroNum.ai — Backend API (Lambda + API Gateway)
+  AI study note generation endpoint for the NeuroNum.ai tutoring platform.
+
+# ═══════════════════════════════════════════
+# Parameters — set during `sam deploy --guided`
+# ═══════════════════════════════════════════
+Parameters:
+  AnthropicApiKey:
+    Type: String
+    NoEcho: true
+    Description: Anthropic API key for Claude (Tutor Alpha)
+  GeminiApiKey:
+    Type: String
+    NoEcho: true
+    Description: Google Gemini API key (Tutor Beta)
+  AllowedOrigin:
+    Type: String
+    Default: '*'
+    Description: >
+      Frontend origin for CORS (e.g. https://neuronum.ai).
+      Set to your Amplify domain after deployment.
+  StageName:
+    Type: String
+    Default: prod
+    AllowedValues: [prod, staging, dev]
+  CustomDomainName:
+    Type: String
+    Default: ''
+    Description: >
+      Custom domain for the API (e.g. api.neuronum.ai).
+      Leave blank to skip custom domain setup.
+  CertificateArn:
+    Type: String
+    Default: ''
+    Description: >
+      ACM certificate ARN for the custom API domain.
+      Required if CustomDomainName is set.
+      Must be in us-east-1 for edge-optimized endpoints.
+
+Conditions:
+  HasCustomDomain: !Not [!Equals [!Ref CustomDomainName, '']]
+
+Globals:
+  Function:
+    Timeout: 60
+    Runtime: nodejs20.x
+    MemorySize: 512
+
+Resources:
+  # ── Lambda Function ──
+  GenerateNotesFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: neuronum-generate-notes
+      CodeUri: lambda/
+      Handler: index.handler
+      Description: Generates AI study notes via Claude and Gemini
+      Environment:
+        Variables:
+          ANTHROPIC_API_KEY: !Ref AnthropicApiKey
+          GEMINI_API_KEY: !Ref GeminiApiKey
+          ALLOWED_ORIGIN: !Ref AllowedOrigin
+          NODE_ENV: production
+      Events:
+        GenerateApi:
+          Type: Api
+          Properties:
+            RestApiId: !Ref NeuronumApi
+            Path: /api/generate
+            Method: POST
+        GenerateCORS:
+          Type: Api
+          Properties:
+            RestApiId: !Ref NeuronumApi
+            Path: /api/generate
+            Method: OPTIONS
+
+  # ── API Gateway ──
+  NeuronumApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: neuronum-api
+      StageName: !Ref StageName
+      Cors:
+        AllowMethods: "'POST, OPTIONS'"
+        AllowHeaders: "'Content-Type'"
+        AllowOrigin: !Sub "'${AllowedOrigin}'"
+
+  # ── Custom Domain (optional) ──
+  ApiDomainName:
+    Type: AWS::ApiGateway::DomainName
+    Condition: HasCustomDomain
+    Properties:
+      DomainName: !Ref CustomDomainName
+      CertificateArn: !Ref CertificateArn
+      EndpointConfiguration:
+        Types:
+          - EDGE
+
+  ApiBasePathMapping:
+    Type: AWS::ApiGateway::BasePathMapping
+    Condition: HasCustomDomain
+    DependsOn: NeuronumApiprodStage
+    Properties:
+      DomainName: !Ref ApiDomainName
+      RestApiId: !Ref NeuronumApi
+      Stage: !Ref StageName
+
+Outputs:
+  ApiUrl:
+    Description: API Gateway endpoint URL
+    Value: !Sub "https://${NeuronumApi}.execute-api.${AWS::Region}.amazonaws.com/${StageName}"
+  ApiCustomUrl:
+    Condition: HasCustomDomain
+    Description: Custom domain API URL
+    Value: !Sub "https://${CustomDomainName}"
+  ApiDistribution:
+    Condition: HasCustomDomain
+    Description: >
+      CloudFront distribution domain for CNAME/ALIAS DNS record.
+      Point your custom domain DNS to this value.
+    Value: !GetAtt ApiDomainName.DistributionDomainName
+  FunctionArn:
+    Description: Lambda function ARN
+    Value: !GetAtt GenerateNotesFunction.Arn

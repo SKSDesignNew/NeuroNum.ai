@@ -25,9 +25,10 @@ const FINANCE_TOPIC_NAMES = {
   entrepreneurship:'Entrepreneurship', crypto_fintech:'Crypto & Fintech', adulting_finance:'Adulting Finance',
 };
 
-const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-  ? `http://${window.location.hostname}:3000`
-  : '';
+const API_BASE = window.__ENV__?.API_BASE
+  || (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? `http://${window.location.hostname}:3000`
+    : '');
 
 let profile = null;
 let currentSubject = 'science';

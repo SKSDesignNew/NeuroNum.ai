@@ -1,0 +1,47 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - echo "No build dependencies for static frontend"
+    build:
+      commands:
+        - echo "Injecting environment config..."
+        - |
+          cat > js/env-config.js << ENVEOF
+          window.__ENV__ = {
+            SUPABASE_URL:  '${SUPABASE_URL}',
+            SUPABASE_ANON: '${SUPABASE_ANON_KEY}',
+            API_BASE:      '${API_BASE_URL}',
+          };
+          ENVEOF
+        - echo "Build complete"
+  artifacts:
+    baseDirectory: /
+    files:
+      - index.html
+      - auth.html
+      - profile.html
+      - dashboard.html
+      - css/**/*
+      - js/**/*
+      - assets/**/*
+  customHeaders:
+    - pattern: '**/*'
+      headers:
+        - key: 'X-Frame-Options'
+          value: 'DENY'
+        - key: 'X-Content-Type-Options'
+          value: 'nosniff'
+        - key: 'Referrer-Policy'
+          value: 'strict-origin-when-cross-origin'
+    - pattern: 'css/*'
+      headers:
+        - key: 'Cache-Control'
+          value: 'public, max-age=31536000, immutable'
+    - pattern: 'js/*'
+      headers:
+        - key: 'Cache-Control'
+          value: 'public, max-age=86400'
+  cache:
+    paths: []
