@@ -1,0 +1,63 @@
+<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+<style>
+  @keyframes synapseFire{0%,100%{opacity:.2;r:2}30%{opacity:1;r:4}60%{opacity:.6;r:2.5}}
+  @keyframes dendritePulse{0%,100%{opacity:.3;stroke-width:.8}40%{opacity:.8;stroke-width:1.5}}
+  @keyframes nucleusBeat{0%,100%{r:3;opacity:.5}50%{r:5;opacity:1}}
+  @keyframes signalTravel{0%{stroke-dashoffset:24}100%{stroke-dashoffset:0}}
+  @keyframes barPulse1{0%,100%{height:16;y:14;opacity:.35}50%{height:22;y:8;opacity:.55}}
+  @keyframes barPulse2{0%,100%{height:24;y:6;opacity:.5}50%{height:30;y:0;opacity:.7}}
+  @keyframes barPulse3{0%,100%{height:34;y:-4;opacity:.7}50%{height:40;y:-10;opacity:.9}}
+  @keyframes barPulse4{0%,100%{height:46;y:-16;opacity:.9}50%{height:50;y:-20;opacity:1}}
+  @keyframes trendGlow{0%,100%{opacity:.4;stroke-width:1.5}50%{opacity:.9;stroke-width:2.5}}
+  @keyframes candleFlicker{0%,100%{opacity:.5}50%{opacity:.9}}
+  @keyframes dataParticle{0%{opacity:0;transform:translate(0,0)}20%{opacity:.8}100%{opacity:0;transform:translate(12px,-18px)}}
+  @keyframes dollarPulse{0%,100%{opacity:.12}50%{opacity:.25}}
+  .s1{animation:synapseFire 2.2s ease-in-out infinite}
+  .s2{animation:synapseFire 2.2s ease-in-out infinite .5s}
+  .s3{animation:synapseFire 2.2s ease-in-out infinite 1s}
+  .s4{animation:synapseFire 2.2s ease-in-out infinite 1.5s}
+  .d1{animation:dendritePulse 2.2s ease-in-out infinite}
+  .d2{animation:dendritePulse 2.2s ease-in-out infinite .5s}
+  .d3{animation:dendritePulse 2.2s ease-in-out infinite 1s}
+  .d4{animation:dendritePulse 2.2s ease-in-out infinite 1.5s}
+  .nc{animation:nucleusBeat 1.8s ease-in-out infinite}
+  .sg{stroke-dasharray:6 4;animation:signalTravel 1.5s linear infinite}
+  .b1{animation:barPulse1 3.5s ease-in-out infinite}
+  .b2{animation:barPulse2 3.5s ease-in-out infinite .3s}
+  .b3{animation:barPulse3 3.5s ease-in-out infinite .6s}
+  .b4{animation:barPulse4 3.5s ease-in-out infinite .9s}
+  .tl{animation:trendGlow 2s ease-in-out infinite}
+  .cf{animation:candleFlicker 1.5s ease-in-out infinite .5s}
+  .dp{animation:dataParticle 2s ease-out infinite}
+  .dp2{animation:dataParticle 2s ease-out infinite .7s}
+  .dp3{animation:dataParticle 2s ease-out infinite 1.4s}
+  .dl{animation:dollarPulse 3s ease-in-out infinite}
+</style>
+<defs><linearGradient id="g" x1="0%" x2="100%"><stop stop-color="#00ffc8"/><stop offset="1" stop-color="#ff3cac"/></linearGradient></defs>
+<g transform="translate(90,90)">
+  <circle cx="0" cy="0" r="72" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width=".5"/>
+  <line x1="-50" y1="-40" x2="-28" y2="-22" stroke="#00ffc8" class="d1"/>
+  <line x1="-56" y1="-14" x2="-30" y2="-8" stroke="#00ffc8" class="d2"/>
+  <line x1="-54" y1="14" x2="-28" y2="8" stroke="#00ffc8" class="d3"/>
+  <line x1="-48" y1="38" x2="-26" y2="22" stroke="#00ffc8" class="d4"/>
+  <circle cx="-50" cy="-40" fill="#00ffc8" class="s1"/>
+  <circle cx="-56" cy="-14" fill="#00ffc8" class="s2"/>
+  <circle cx="-54" cy="14" fill="#00ffc8" class="s3"/>
+  <circle cx="-48" cy="38" fill="#00ffc8" class="s4"/>
+  <circle cx="-10" cy="0" r="18" fill="rgba(0,255,200,0.04)" stroke="#00ffc8" stroke-width="1"/>
+  <circle cx="-10" cy="0" fill="#00ffc8" class="nc"/>
+  <line x1="8" y1="0" x2="22" y2="0" class="sg" stroke="url(#g)" stroke-width="1.2" opacity=".6"/>
+  <text x="42" y="8" font-family="monospace" font-size="54" fill="#ff3cac" class="dl" text-anchor="middle">$</text>
+  <rect x="24" width="7" rx="2" fill="#ff3cac" class="b1"/>
+  <rect x="35" width="7" rx="2" fill="#ff3cac" class="b2"/>
+  <rect x="46" width="7" rx="2" fill="#ff3cac" class="b3"/>
+  <rect x="57" width="7" rx="2" fill="#ff3cac" class="b4"/>
+  <polyline points="27,10 38,2 49,-8 60,-20" stroke="#ff3cac" stroke-linecap="round" fill="none" class="tl"/>
+  <circle cx="60" cy="-20" r="3.5" fill="#ff3cac" class="cf"/>
+  <circle cx="60" cy="-20" r="7" fill="#ff3cac" opacity=".12" class="cf"/>
+  <circle cx="27" cy="8" r="1.2" fill="#ff3cac" class="dp"/>
+  <circle cx="38" cy="0" r="1" fill="#ff3cac" class="dp2"/>
+  <circle cx="49" cy="-6" r="1.2" fill="#ff3cac" class="dp3"/>
+  <line x1="8" y1="-60" x2="8" y2="60" stroke="url(#g)" stroke-width=".5" opacity=".1" stroke-dasharray="2 4"/>
+</g>
+</svg>

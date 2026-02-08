@@ -4,30 +4,68 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NeuroNum.ai — Adaptive AI Tutoring for Grades 9–12</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logos/svg/favicon.svg">
+  <meta property="og:image" content="assets/logos/png/og-image-1200.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700;9..144,800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/brand.css" />
 </head>
 <body>
   <!-- ───────── NAVBAR ───────── -->
   <nav class="navbar" id="navbar">
     <div class="nav-inner">
       <a href="/" class="logo" aria-label="NeuroNum.ai Home">
-        <svg class="logo-icon" width="36" height="36" viewBox="0 0 36 36" fill="none">
-          <circle cx="18" cy="18" r="17" stroke="url(#lg)" stroke-width="2"/>
-          <path d="M11 24V14l7-5 7 5v10l-7 4-7-4z" fill="url(#lg)" opacity=".15"/>
-          <path d="M11 14l7 4 7-4M18 18v10" stroke="url(#lg)" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="18" cy="11" r="2.5" fill="url(#lg)"/>
-          <circle cx="11" cy="14" r="1.5" fill="#06b6d4"/>
-          <circle cx="25" cy="14" r="1.5" fill="#10b981"/>
-          <defs>
-            <linearGradient id="lg" x1="0" y1="0" x2="36" y2="36">
-              <stop stop-color="#06b6d4"/><stop offset="1" stop-color="#10b981"/>
-            </linearGradient>
-          </defs>
+        <svg class="logo-mark" width="240" height="48" viewBox="0 0 300 60" fill="none">
+        <style>
+          @keyframes synapseFire{0%,100%{opacity:.2;r:1.5}30%{opacity:1;r:3}}
+          @keyframes dendritePulse{0%,100%{opacity:.3;stroke-width:.6}40%{opacity:.8;stroke-width:1.2}}
+          @keyframes nucleusBeat{0%,100%{r:2;opacity:.5}50%{r:3;opacity:1}}
+          @keyframes signalTravel{0%{stroke-dashoffset:20}100%{stroke-dashoffset:0}}
+          @keyframes barPulse2{0%,100%{height:14;y:0;opacity:.5}50%{height:18;y:-4;opacity:.7}}
+          @keyframes barPulse3{0%,100%{height:20;y:-6;opacity:.7}50%{height:24;y:-10;opacity:.9}}
+          @keyframes trendGlow{0%,100%{opacity:.4;stroke-width:1}50%{opacity:.9;stroke-width:1.8}}
+          @keyframes candleFlicker{0%,100%{opacity:.4}50%{opacity:.9}}
+          @keyframes dataParticle{0%{opacity:0;transform:translate(0,0)}20%{opacity:.8}100%{opacity:0;transform:translate(8px,-12px)}}
+          .s1{animation:synapseFire 2.2s ease-in-out infinite}
+          .s2{animation:synapseFire 2.2s ease-in-out infinite .5s}
+          .s3{animation:synapseFire 2.2s ease-in-out infinite 1s}
+          .d1{animation:dendritePulse 2.2s ease-in-out infinite}
+          .d2{animation:dendritePulse 2.2s ease-in-out infinite .5s}
+          .d3{animation:dendritePulse 2.2s ease-in-out infinite 1s}
+          .nc{animation:nucleusBeat 1.8s ease-in-out infinite}
+          .sg{stroke-dasharray:6 4;animation:signalTravel 1.5s linear infinite}
+          .b2{animation:barPulse2 3.5s ease-in-out infinite .3s}
+          .b3{animation:barPulse3 3.5s ease-in-out infinite .6s}
+          .tl{animation:trendGlow 2s ease-in-out infinite}
+          .cf{animation:candleFlicker 1.5s ease-in-out infinite}
+          .dp{animation:dataParticle 2s ease-out infinite}
+          .dp2{animation:dataParticle 2s ease-out infinite .7s}
+        </style>
+        <defs><linearGradient id="navG" x1="0%" x2="100%"><stop stop-color="#00ffc8"/><stop offset="1" stop-color="#ff3cac"/></linearGradient></defs>
+        <g transform="translate(30,30)">
+          <line x1="-16" y1="-12" x2="-8" y2="-6" stroke="#00ffc8" class="d1"/>
+          <line x1="-18" y1="4" x2="-10" y2="2" stroke="#00ffc8" class="d2"/>
+          <line x1="-14" y1="12" x2="-8" y2="6" stroke="#00ffc8" class="d3"/>
+          <circle cx="-16" cy="-12" fill="#00ffc8" class="s1"/>
+          <circle cx="-18" cy="4" fill="#00ffc8" class="s2"/>
+          <circle cx="-14" cy="12" fill="#00ffc8" class="s3"/>
+          <circle cx="-2" cy="0" r="6" fill="rgba(0,255,200,0.04)" stroke="#00ffc8" stroke-width=".8"/>
+          <circle cx="-2" cy="0" fill="#00ffc8" class="nc"/>
+          <line x1="4" y1="0" x2="10" y2="0" class="sg" stroke="url(#navG)" stroke-width="1" opacity=".6"/>
+          <rect x="12" y="4" width="3" height="10" rx="1" fill="#ff3cac" class="b2"/>
+          <rect x="17" y="0" width="3" height="14" rx="1" fill="#ff3cac" class="b2"/>
+          <rect x="22" y="-6" width="3" height="20" rx="1" fill="#ff3cac" class="b3"/>
+          <polyline points="13,2 18,-2 23,-8" stroke="#ff3cac" stroke-width="1" stroke-linecap="round" fill="none" class="tl"/>
+          <circle cx="23" cy="-8" r="1.5" fill="#ff3cac" class="cf"/>
+          <circle cx="13" cy="2" r=".8" fill="#ff3cac" class="dp"/>
+          <circle cx="18" cy="-2" r=".8" fill="#ff3cac" class="dp2"/>
+        </g>
+        <text x="68" y="34" font-family="'Fraunces',Georgia,serif" font-weight="700" font-size="26" fill="#fff"><tspan fill="#00ffc8">Neuro</tspan><tspan fill="#ff3cac">Num</tspan></text>
+        <text x="232" y="34" font-family="'IBM Plex Mono',monospace" font-size="12" fill="rgba(255,255,255,0.15)" letter-spacing="2">.ai</text>
         </svg>
-        <span class="logo-text">Neuro<strong>Num</strong><small>.ai</small></span>
+        <span class="logo-text"><span class="neuro">Neuro</span><span class="num">Num</span><span class="ai">.ai</span></span>
       </a>
 
       <ul class="nav-links" id="navLinks">
@@ -54,6 +92,101 @@
       <div class="hero-grid"></div>
     </div>
     <div class="hero-content">
+      <div class="hero-logo">
+        <svg width="520" height="180" viewBox="0 0 520 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <style>
+          @keyframes synapseFire { 0%,100%{opacity:.2;r:2}30%{opacity:1;r:4}60%{opacity:.6;r:2.5} }
+          @keyframes dendritePulse { 0%,100%{opacity:.3;stroke-width:.8}40%{opacity:.8;stroke-width:1.5} }
+          @keyframes nucleusBeat { 0%,100%{r:3;opacity:.5}50%{r:5;opacity:1} }
+          @keyframes signalTravel { 0%{stroke-dashoffset:24}100%{stroke-dashoffset:0} }
+          @keyframes barPulse1 { 0%,100%{height:16;y:14;opacity:.35}25%{height:22;y:8;opacity:.5}50%{height:12;y:18;opacity:.3}75%{height:20;y:10;opacity:.45} }
+          @keyframes barPulse2 { 0%,100%{height:24;y:6;opacity:.5}30%{height:30;y:0;opacity:.65}60%{height:18;y:12;opacity:.4}80%{height:28;y:2;opacity:.6} }
+          @keyframes barPulse3 { 0%,100%{height:34;y:-4;opacity:.7}20%{height:28;y:2;opacity:.55}50%{height:40;y:-10;opacity:.85}75%{height:32;y:-2;opacity:.65} }
+          @keyframes barPulse4 { 0%,100%{height:46;y:-16;opacity:.9}35%{height:38;y:-8;opacity:.7}65%{height:50;y:-20;opacity:1}85%{height:42;y:-12;opacity:.8} }
+          @keyframes trendGlow { 0%,100%{opacity:.4;stroke-width:1.5}50%{opacity:.9;stroke-width:2.5} }
+          @keyframes candleFlicker { 0%,100%{opacity:.5}50%{opacity:.9} }
+          @keyframes dataParticle { 0%{opacity:0;transform:translate(0,0)}20%{opacity:.8}100%{opacity:0;transform:translate(12px,-18px)} }
+          @keyframes dollarPulse { 0%,100%{opacity:.15}50%{opacity:.3} }
+          .syn1{animation:synapseFire 2.2s ease-in-out infinite}
+          .syn2{animation:synapseFire 2.2s ease-in-out infinite .5s}
+          .syn3{animation:synapseFire 2.2s ease-in-out infinite 1s}
+          .syn4{animation:synapseFire 2.2s ease-in-out infinite 1.5s}
+          .den{animation:dendritePulse 2.2s ease-in-out infinite}
+          .den2{animation:dendritePulse 2.2s ease-in-out infinite .5s}
+          .den3{animation:dendritePulse 2.2s ease-in-out infinite 1s}
+          .den4{animation:dendritePulse 2.2s ease-in-out infinite 1.5s}
+          .nuc{animation:nucleusBeat 1.8s ease-in-out infinite}
+          .sig{stroke-dasharray:6 4;animation:signalTravel 1.5s linear infinite}
+          .b1{animation:barPulse1 3.5s ease-in-out infinite}
+          .b2{animation:barPulse2 3.5s ease-in-out infinite .3s}
+          .b3{animation:barPulse3 3.5s ease-in-out infinite .6s}
+          .b4{animation:barPulse4 3.5s ease-in-out infinite .9s}
+          .tl{animation:trendGlow 2s ease-in-out infinite}
+          .c1{animation:candleFlicker 1.5s ease-in-out infinite}
+          .c2{animation:candleFlicker 1.5s ease-in-out infinite .5s}
+          .c3{animation:candleFlicker 1.5s ease-in-out infinite 1s}
+          .dp{animation:dataParticle 2s ease-out infinite}
+          .dp2{animation:dataParticle 2s ease-out infinite .7s}
+          .dp3{animation:dataParticle 2s ease-out infinite 1.4s}
+          .dl{animation:dollarPulse 3s ease-in-out infinite}
+        </style>
+        <defs>
+          <linearGradient id="bridge" x1="0%" y1="0%" x2="100%"><stop stop-color="#00ffc8"/><stop offset="1" stop-color="#ff3cac"/></linearGradient>
+        </defs>
+        <!-- NEURON HALF -->
+        <g transform="translate(80,90)">
+          <circle cx="0" cy="0" r="58" fill="none" stroke="rgba(0,255,200,0.04)" stroke-width=".5"/>
+          <line x1="-42" y1="-34" x2="-22" y2="-18" stroke="#00ffc8" class="den"/>
+          <line x1="-48" y1="-12" x2="-24" y2="-6" stroke="#00ffc8" class="den2"/>
+          <line x1="-46" y1="12" x2="-22" y2="6" stroke="#00ffc8" class="den3"/>
+          <line x1="-40" y1="32" x2="-20" y2="18" stroke="#00ffc8" class="den4"/>
+          <line x1="-50" y1="-42" x2="-42" y2="-34" stroke="#00ffc8" stroke-width=".5" opacity=".3"/>
+          <line x1="-38" y1="-44" x2="-42" y2="-34" stroke="#00ffc8" stroke-width=".5" opacity=".25"/>
+          <line x1="-56" y1="-6" x2="-48" y2="-12" stroke="#00ffc8" stroke-width=".5" opacity=".25"/>
+          <line x1="-54" y1="18" x2="-46" y2="12" stroke="#00ffc8" stroke-width=".5" opacity=".3"/>
+          <line x1="-48" y1="40" x2="-40" y2="32" stroke="#00ffc8" stroke-width=".5" opacity=".25"/>
+          <circle cx="-42" cy="-34" fill="#00ffc8" class="syn1"/>
+          <circle cx="-48" cy="-12" fill="#00ffc8" class="syn2"/>
+          <circle cx="-46" cy="12" fill="#00ffc8" class="syn3"/>
+          <circle cx="-40" cy="32" fill="#00ffc8" class="syn4"/>
+          <circle cx="-50" cy="-42" r="1.2" fill="#00ffc8" opacity=".3" class="syn2"/>
+          <circle cx="-38" cy="-44" r="1" fill="#00ffc8" opacity=".2" class="syn3"/>
+          <circle cx="-54" cy="18" r="1.2" fill="#00ffc8" opacity=".25" class="syn1"/>
+          <circle cx="-8" cy="0" r="16" fill="rgba(0,255,200,0.04)" stroke="#00ffc8" stroke-width="1.2"/>
+          <circle cx="-8" cy="0" r="8" fill="rgba(0,255,200,0.06)" stroke="#00ffc8" stroke-width=".5" opacity=".5"/>
+          <circle cx="-8" cy="0" fill="#00ffc8" class="nuc"/>
+          <line x1="8" y1="0" x2="22" y2="0" class="sig" stroke="url(#bridge)" stroke-width="1.5" opacity=".7"/>
+        </g>
+        <!-- Spine -->
+        <line x1="100" y1="28" x2="100" y2="152" stroke="url(#bridge)" stroke-width=".6" opacity=".15" stroke-dasharray="2 4"/>
+        <!-- FINANCE HALF -->
+        <g transform="translate(80,90)">
+          <text x="38" y="8" font-family="monospace" font-size="48" fill="#ff3cac" class="dl" text-anchor="middle">$</text>
+          <g opacity=".1"><line x1="20" y1="-30" x2="62" y2="-30" stroke="#ff3cac" stroke-width=".4"/><line x1="20" y1="-15" x2="62" y2="-15" stroke="#ff3cac" stroke-width=".4"/><line x1="20" y1="0" x2="62" y2="0" stroke="#ff3cac" stroke-width=".4"/><line x1="20" y1="15" x2="62" y2="15" stroke="#ff3cac" stroke-width=".4"/><line x1="20" y1="30" x2="62" y2="30" stroke="#ff3cac" stroke-width=".4"/></g>
+          <rect x="22" width="6" rx="2" fill="#ff3cac" class="b1"/>
+          <rect x="32" width="6" rx="2" fill="#ff3cac" class="b2"/>
+          <rect x="42" width="6" rx="2" fill="#ff3cac" class="b3"/>
+          <rect x="52" width="6" rx="2" fill="#ff3cac" class="b4"/>
+          <line x1="25" y1="-22" x2="25" y2="-28" stroke="#ff3cac" stroke-width=".8" class="c1" opacity=".5"/>
+          <line x1="35" y1="-24" x2="35" y2="-32" stroke="#ff3cac" stroke-width=".8" class="c2" opacity=".5"/>
+          <line x1="45" y1="-30" x2="45" y2="-38" stroke="#ff3cac" stroke-width=".8" class="c3" opacity=".5"/>
+          <line x1="55" y1="-36" x2="55" y2="-44" stroke="#ff3cac" stroke-width=".8" class="c1" opacity=".5"/>
+          <polyline points="25,10 35,2 45,-8 55,-20" stroke="#ff3cac" stroke-linecap="round" fill="none" class="tl"/>
+          <polyline points="25,10 35,2 45,-8 55,-20" stroke="#ff3cac" stroke-width="4" stroke-linecap="round" fill="none" opacity=".1" class="tl"/>
+          <circle cx="55" cy="-20" r="3" fill="#ff3cac" class="c2"/>
+          <circle cx="55" cy="-20" r="6" fill="#ff3cac" opacity=".15" class="c2"/>
+          <circle cx="25" cy="8" r="1.2" fill="#ff3cac" class="dp"/>
+          <circle cx="35" cy="0" r="1" fill="#ff3cac" class="dp2"/>
+          <circle cx="45" cy="-6" r="1.2" fill="#ff3cac" class="dp3"/>
+          <circle cx="55" cy="-14" r="1" fill="#ff3cac" class="dp"/>
+        </g>
+        <!-- WORDMARK -->
+        <text x="175" y="90" font-family="Georgia,serif" font-weight="700" font-size="52" fill="#fff" letter-spacing="1"><tspan fill="#00ffc8">Neuro</tspan><tspan fill="#ff3cac">Num</tspan></text>
+        <line x1="175" y1="102" x2="465" y2="102" stroke="url(#bridge)" stroke-width="1" opacity=".3"/>
+        <text x="177" y="122" font-family="monospace" font-size="14" fill="rgba(255,255,255,0.2)" letter-spacing="6">.ai</text>
+        <text x="177" y="144" font-family="sans-serif" font-weight="300" font-size="10" fill="#333" letter-spacing="3">WHERE NEURONS MEET NUMBERS</text>
+        </svg>
+      </div>
       <span class="hero-badge">Powered by Adaptive AI</span>
       <h1>Smart Tutoring That <span class="gradient-text">Meets You Where You Are</span></h1>
       <p class="hero-sub">Personalized study plans, instant help, and progress tracking for grades 9&ndash;12. Master <strong>Science</strong> and <strong>Financial Literacy</strong> with AI that adapts to your learning style.</p>
@@ -79,10 +212,10 @@
     <div class="split-panel science-panel" id="science-section">
       <div class="panel-bg">
         <svg class="atom-svg" viewBox="0 0 200 200" fill="none">
-          <ellipse cx="100" cy="100" rx="90" ry="30" stroke="#06b6d4" stroke-width="1" opacity=".25" transform="rotate(-30 100 100)"/>
-          <ellipse cx="100" cy="100" rx="90" ry="30" stroke="#06b6d4" stroke-width="1" opacity=".25" transform="rotate(30 100 100)"/>
-          <ellipse cx="100" cy="100" rx="90" ry="30" stroke="#06b6d4" stroke-width="1" opacity=".25"/>
-          <circle cx="100" cy="100" r="8" fill="#06b6d4" opacity=".4"/>
+          <ellipse cx="100" cy="100" rx="90" ry="30" stroke="#00FFC8" stroke-width="1" opacity=".25" transform="rotate(-30 100 100)"/>
+          <ellipse cx="100" cy="100" rx="90" ry="30" stroke="#00FFC8" stroke-width="1" opacity=".25" transform="rotate(30 100 100)"/>
+          <ellipse cx="100" cy="100" rx="90" ry="30" stroke="#00FFC8" stroke-width="1" opacity=".25"/>
+          <circle cx="100" cy="100" r="8" fill="#00FFC8" opacity=".4"/>
         </svg>
       </div>
       <div class="panel-content">
@@ -91,19 +224,19 @@
         <p>From biology and chemistry to physics and earth science &mdash; our AI tutor builds a study path tailored to your grade and skill level.</p>
         <ul class="feature-list">
           <li>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00FFC8" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
             Biology, Chemistry, Physics, Earth Science
           </li>
           <li>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00FFC8" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
             Grade-aligned curriculum (9th&ndash;12th)
           </li>
           <li>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00FFC8" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
             SAT/ACT Science prep with smart drills
           </li>
           <li>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00FFC8" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
             Interactive labs and visual explanations
           </li>
         </ul>
@@ -115,15 +248,15 @@
     <div class="split-panel finance-panel" id="finance-section">
       <div class="panel-bg">
         <svg class="chart-svg" viewBox="0 0 200 200" fill="none">
-          <polyline points="20,160 50,140 80,150 110,100 140,110 170,60" stroke="#10b981" stroke-width="2" opacity=".3" fill="none"/>
-          <polyline points="20,170 60,155 100,130 140,120 180,80" stroke="#10b981" stroke-width="1.5" opacity=".2" fill="none"/>
-          <circle cx="170" cy="60" r="6" fill="#10b981" opacity=".3"/>
-          <circle cx="140" cy="110" r="4" fill="#10b981" opacity=".25"/>
-          <rect x="30" y="140" width="12" height="40" rx="2" fill="#10b981" opacity=".15"/>
-          <rect x="60" y="120" width="12" height="60" rx="2" fill="#10b981" opacity=".15"/>
-          <rect x="90" y="100" width="12" height="80" rx="2" fill="#10b981" opacity=".15"/>
-          <rect x="120" y="80" width="12" height="100" rx="2" fill="#10b981" opacity=".15"/>
-          <rect x="150" y="60" width="12" height="120" rx="2" fill="#10b981" opacity=".15"/>
+          <polyline points="20,160 50,140 80,150 110,100 140,110 170,60" stroke="#FF3CAC" stroke-width="2" opacity=".3" fill="none"/>
+          <polyline points="20,170 60,155 100,130 140,120 180,80" stroke="#FF3CAC" stroke-width="1.5" opacity=".2" fill="none"/>
+          <circle cx="170" cy="60" r="6" fill="#FF3CAC" opacity=".3"/>
+          <circle cx="140" cy="110" r="4" fill="#FF3CAC" opacity=".25"/>
+          <rect x="30" y="140" width="12" height="40" rx="2" fill="#FF3CAC" opacity=".15"/>
+          <rect x="60" y="120" width="12" height="60" rx="2" fill="#FF3CAC" opacity=".15"/>
+          <rect x="90" y="100" width="12" height="80" rx="2" fill="#FF3CAC" opacity=".15"/>
+          <rect x="120" y="80" width="12" height="100" rx="2" fill="#FF3CAC" opacity=".15"/>
+          <rect x="150" y="60" width="12" height="120" rx="2" fill="#FF3CAC" opacity=".15"/>
         </svg>
       </div>
       <div class="panel-content">
@@ -132,19 +265,19 @@
         <p>Learn budgeting, investing, credit, and tax fundamentals. Real-world financial literacy designed for every high school grade level.</p>
         <ul class="feature-list">
           <li>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF3CAC" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
             Budgeting, Saving, Banking, Credit
           </li>
           <li>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF3CAC" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
             Investing, Stock Market, Compound Interest
           </li>
           <li>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF3CAC" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
             Tax Basics, College Finance Planning
           </li>
           <li>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF3CAC" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
             Real-world simulations and case studies
           </li>
         </ul>
@@ -238,14 +371,55 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="/" class="logo">
-            <svg class="logo-icon" width="32" height="32" viewBox="0 0 36 36" fill="none">
-              <circle cx="18" cy="18" r="17" stroke="url(#lg2)" stroke-width="2"/>
-              <path d="M11 24V14l7-5 7 5v10l-7 4-7-4z" fill="url(#lg2)" opacity=".15"/>
-              <path d="M11 14l7 4 7-4M18 18v10" stroke="url(#lg2)" stroke-width="1.5" stroke-linecap="round"/>
-              <circle cx="18" cy="11" r="2.5" fill="url(#lg2)"/>
-              <defs><linearGradient id="lg2" x1="0" y1="0" x2="36" y2="36"><stop stop-color="#06b6d4"/><stop offset="1" stop-color="#10b981"/></linearGradient></defs>
+            <svg class="logo-mark" width="240" height="48" viewBox="0 0 300 60" fill="none">
+            <style>
+              @keyframes synapseFire{0%,100%{opacity:.2;r:1.5}30%{opacity:1;r:3}}
+              @keyframes dendritePulse{0%,100%{opacity:.3;stroke-width:.6}40%{opacity:.8;stroke-width:1.2}}
+              @keyframes nucleusBeat{0%,100%{r:2;opacity:.5}50%{r:3;opacity:1}}
+              @keyframes signalTravel{0%{stroke-dashoffset:20}100%{stroke-dashoffset:0}}
+              @keyframes barPulse2{0%,100%{height:14;y:0;opacity:.5}50%{height:18;y:-4;opacity:.7}}
+              @keyframes barPulse3{0%,100%{height:20;y:-6;opacity:.7}50%{height:24;y:-10;opacity:.9}}
+              @keyframes trendGlow{0%,100%{opacity:.4;stroke-width:1}50%{opacity:.9;stroke-width:1.8}}
+              @keyframes candleFlicker{0%,100%{opacity:.4}50%{opacity:.9}}
+              @keyframes dataParticle{0%{opacity:0;transform:translate(0,0)}20%{opacity:.8}100%{opacity:0;transform:translate(8px,-12px)}}
+              .s1{animation:synapseFire 2.2s ease-in-out infinite}
+              .s2{animation:synapseFire 2.2s ease-in-out infinite .5s}
+              .s3{animation:synapseFire 2.2s ease-in-out infinite 1s}
+              .d1{animation:dendritePulse 2.2s ease-in-out infinite}
+              .d2{animation:dendritePulse 2.2s ease-in-out infinite .5s}
+              .d3{animation:dendritePulse 2.2s ease-in-out infinite 1s}
+              .nc{animation:nucleusBeat 1.8s ease-in-out infinite}
+              .sg{stroke-dasharray:6 4;animation:signalTravel 1.5s linear infinite}
+              .b2{animation:barPulse2 3.5s ease-in-out infinite .3s}
+              .b3{animation:barPulse3 3.5s ease-in-out infinite .6s}
+              .tl{animation:trendGlow 2s ease-in-out infinite}
+              .cf{animation:candleFlicker 1.5s ease-in-out infinite}
+              .dp{animation:dataParticle 2s ease-out infinite}
+              .dp2{animation:dataParticle 2s ease-out infinite .7s}
+            </style>
+            <defs><linearGradient id="navG2" x1="0%" x2="100%"><stop stop-color="#00ffc8"/><stop offset="1" stop-color="#ff3cac"/></linearGradient></defs>
+            <g transform="translate(30,30)">
+              <line x1="-16" y1="-12" x2="-8" y2="-6" stroke="#00ffc8" class="d1"/>
+              <line x1="-18" y1="4" x2="-10" y2="2" stroke="#00ffc8" class="d2"/>
+              <line x1="-14" y1="12" x2="-8" y2="6" stroke="#00ffc8" class="d3"/>
+              <circle cx="-16" cy="-12" fill="#00ffc8" class="s1"/>
+              <circle cx="-18" cy="4" fill="#00ffc8" class="s2"/>
+              <circle cx="-14" cy="12" fill="#00ffc8" class="s3"/>
+              <circle cx="-2" cy="0" r="6" fill="rgba(0,255,200,0.04)" stroke="#00ffc8" stroke-width=".8"/>
+              <circle cx="-2" cy="0" fill="#00ffc8" class="nc"/>
+              <line x1="4" y1="0" x2="10" y2="0" class="sg" stroke="url(#navG2)" stroke-width="1" opacity=".6"/>
+              <rect x="12" y="4" width="3" height="10" rx="1" fill="#ff3cac" class="b2"/>
+              <rect x="17" y="0" width="3" height="14" rx="1" fill="#ff3cac" class="b2"/>
+              <rect x="22" y="-6" width="3" height="20" rx="1" fill="#ff3cac" class="b3"/>
+              <polyline points="13,2 18,-2 23,-8" stroke="#ff3cac" stroke-width="1" stroke-linecap="round" fill="none" class="tl"/>
+              <circle cx="23" cy="-8" r="1.5" fill="#ff3cac" class="cf"/>
+              <circle cx="13" cy="2" r=".8" fill="#ff3cac" class="dp"/>
+              <circle cx="18" cy="-2" r=".8" fill="#ff3cac" class="dp2"/>
+            </g>
+            <text x="68" y="34" font-family="'Fraunces',Georgia,serif" font-weight="700" font-size="26" fill="#fff"><tspan fill="#00ffc8">Neuro</tspan><tspan fill="#ff3cac">Num</tspan></text>
+            <text x="232" y="34" font-family="'IBM Plex Mono',monospace" font-size="12" fill="rgba(255,255,255,0.15)" letter-spacing="2">.ai</text>
             </svg>
-            <span class="logo-text">Neuro<strong>Num</strong><small>.ai</small></span>
+            <span class="logo-text"><span class="neuro">Neuro</span><span class="num">Num</span><span class="ai">.ai</span></span>
           </a>
           <p>Adaptive AI tutoring for high school students. Science &amp; Financial Literacy for grades 9&ndash;12.</p>
         </div>
@@ -279,6 +453,8 @@
       </div>
       <div class="footer-bottom">
         <p>&copy; 2026 NeuroNum.ai. All rights reserved.</p>
+        <p class="footer-tagline">Where Neurons Meet Numbers</p>
+        <p class="footer-founders">Founded by Ambika &amp; Saurabh Kaushik</p>
       </div>
     </div>
   </footer>
