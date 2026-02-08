@@ -282,7 +282,6 @@ Resources:
   ApiBasePathMapping:
     Type: AWS::ApiGateway::BasePathMapping
     Condition: HasCustomDomain
-    DependsOn: NeuronumApiprodStage
     Properties:
       DomainName: !Ref ApiDomainName
       RestApiId: !Ref NeuronumApi
