@@ -1,12 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: >
-  NeuroNum.ai — Backend API (Lambda + API Gateway)
-  AI study note generation endpoint for the NeuroNum.ai tutoring platform.
+Description: NeuroNum.ai — Full AWS Backend (Cognito + DynamoDB + Lambda + API Gateway)
 
-# ═══════════════════════════════════════════
-# Parameters — set during `sam deploy --guided`
-# ═══════════════════════════════════════════
 Parameters:
   AnthropicApiKey:
     Type: String
@@ -19,29 +14,61 @@ Parameters:
   AllowedOrigin:
     Type: String
     Default: '*'
-    Description: >
-      Frontend origin for CORS (e.g. https://neuronum.ai).
-      Set to your Amplify domain after deployment.
+    Description: Frontend origin for CORS (e.g. https://neuronum.ai)
   StageName:
     Type: String
     Default: prod
-    AllowedValues: [prod, staging, dev]
+  CognitoDomainPrefix:
+    Type: String
+    Default: neuronum
+    Description: Cognito hosted UI domain prefix (e.g. neuronum → neuronum.auth.us-east-1.amazoncognito.com)
+  GoogleClientId:
+    Type: String
+    Default: ''
+    Description: Google OAuth Client ID (from Google Cloud Console)
+  GoogleClientSecret:
+    Type: String
+    NoEcho: true
+    Default: ''
+    Description: Google OAuth Client Secret
+  AppleTeamId:
+    Type: String
+    Default: ''
+    Description: Apple Developer Team ID
+  AppleServicesId:
+    Type: String
+    Default: ''
+    Description: Apple Services ID (Sign in with Apple)
+  AppleKeyId:
+    Type: String
+    Default: ''
+    Description: Apple Key ID
+  ApplePrivateKey:
+    Type: String
+    NoEcho: true
+    Default: ''
+    Description: Apple private key (PEM format)
+  FrontendCallbackUrl:
+    Type: String
+    Default: 'https://localhost:3000/auth.html'
+    Description: Frontend auth callback URL
+  FrontendLogoutUrl:
+    Type: String
+    Default: 'https://localhost:3000/'
+    Description: Frontend logout redirect URL
   CustomDomainName:
     Type: String
     Default: ''
-    Description: >
-      Custom domain for the API (e.g. api.neuronum.ai).
-      Leave blank to skip custom domain setup.
+    Description: Custom API domain (e.g. api.neuronum.ai). Leave blank to skip.
   CertificateArn:
     Type: String
     Default: ''
-    Description: >
-      ACM certificate ARN for the custom API domain.
-      Required if CustomDomainName is set.
-      Must be in us-east-1 for edge-optimized endpoints.
+    Description: ACM certificate ARN for custom API domain (us-east-1)
 
 Conditions:
   HasCustomDomain: !Not [!Equals [!Ref CustomDomainName, '']]
+  HasGoogle: !Not [!Equals [!Ref GoogleClientId, '']]
+  HasApple: !Not [!Equals [!Ref AppleServicesId, '']]
 
 Globals:
   Function:
@@ -50,7 +77,127 @@ Globals:
     MemorySize: 512
 
 Resources:
-  # ── Lambda Function ──
+  # ══════════════════════════════════════
+  # COGNITO — Auth
+  # ══════════════════════════════════════
+  UserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      UserPoolName: neuronum-users
+      AutoVerifiedAttributes:
+        - email
+      UsernameAttributes:
+        - email
+      Schema:
+        - Name: email
+          Required: true
+          Mutable: true
+        - Name: name
+          Required: false
+          Mutable: true
+
+  UserPoolDomain:
+    Type: AWS::Cognito::UserPoolDomain
+    Properties:
+      Domain: !Ref CognitoDomainPrefix
+      UserPoolId: !Ref UserPool
+
+  UserPoolClient:
+    Type: AWS::Cognito::UserPoolClient
+    DependsOn:
+      - UserPool
+    Properties:
+      ClientName: neuronum-web
+      UserPoolId: !Ref UserPool
+      GenerateSecret: false
+      AllowedOAuthFlows:
+        - implicit
+      AllowedOAuthScopes:
+        - openid
+        - email
+        - profile
+      AllowedOAuthFlowsUserPoolClient: true
+      CallbackURLs:
+        - !Ref FrontendCallbackUrl
+      LogoutURLs:
+        - !Ref FrontendLogoutUrl
+      SupportedIdentityProviders:
+        - COGNITO
+      ExplicitAuthFlows:
+        - ALLOW_USER_SRP_AUTH
+        - ALLOW_REFRESH_TOKEN_AUTH
+
+  GoogleIdentityProvider:
+    Type: AWS::Cognito::UserPoolIdentityProvider
+    Condition: HasGoogle
+    Properties:
+      UserPoolId: !Ref UserPool
+      ProviderName: Google
+      ProviderType: Google
+      ProviderDetails:
+        client_id: !Ref GoogleClientId
+        client_secret: !Ref GoogleClientSecret
+        authorize_scopes: openid email profile
+      AttributeMapping:
+        email: email
+        name: name
+        username: sub
+
+  AppleIdentityProvider:
+    Type: AWS::Cognito::UserPoolIdentityProvider
+    Condition: HasApple
+    Properties:
+      UserPoolId: !Ref UserPool
+      ProviderName: SignInWithApple
+      ProviderType: SignInWithApple
+      ProviderDetails:
+        client_id: !Ref AppleServicesId
+        team_id: !Ref AppleTeamId
+        key_id: !Ref AppleKeyId
+        private_key: !Ref ApplePrivateKey
+        authorize_scopes: email name
+      AttributeMapping:
+        email: email
+        name: name
+        username: sub
+
+  # ══════════════════════════════════════
+  # DYNAMODB — Database
+  # ══════════════════════════════════════
+  ProfilesTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: neuronum-profiles
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: userId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: userId
+          KeyType: HASH
+
+  # ══════════════════════════════════════
+  # API GATEWAY
+  # ══════════════════════════════════════
+  NeuronumApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: neuronum-api
+      StageName: !Ref StageName
+      Cors:
+        AllowMethods: "'GET, PUT, POST, OPTIONS'"
+        AllowHeaders: "'Content-Type, Authorization'"
+        AllowOrigin: !Sub "'${AllowedOrigin}'"
+      Auth:
+        DefaultAuthorizer: CognitoAuth
+        AddDefaultAuthorizerToCorsPreflight: false
+        Authorizers:
+          CognitoAuth:
+            UserPoolArn: !GetAtt UserPool.Arn
+
+  # ══════════════════════════════════════
+  # LAMBDA — AI Note Generation
+  # ══════════════════════════════════════
   GenerateNotesFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -65,31 +212,64 @@ Resources:
           ALLOWED_ORIGIN: !Ref AllowedOrigin
           NODE_ENV: production
       Events:
-        GenerateApi:
+        Post:
           Type: Api
           Properties:
             RestApiId: !Ref NeuronumApi
             Path: /api/generate
             Method: POST
-        GenerateCORS:
+        Options:
           Type: Api
           Properties:
             RestApiId: !Ref NeuronumApi
             Path: /api/generate
             Method: OPTIONS
+            Auth:
+              Authorizer: NONE
 
-  # ── API Gateway ──
-  NeuronumApi:
-    Type: AWS::Serverless::Api
+  # ══════════════════════════════════════
+  # LAMBDA — Profile CRUD
+  # ══════════════════════════════════════
+  ProfileFunction:
+    Type: AWS::Serverless::Function
     Properties:
-      Name: neuronum-api
-      StageName: !Ref StageName
-      Cors:
-        AllowMethods: "'POST, OPTIONS'"
-        AllowHeaders: "'Content-Type'"
-        AllowOrigin: !Sub "'${AllowedOrigin}'"
+      FunctionName: neuronum-profile
+      CodeUri: lambda/
+      Handler: profile.handler
+      Description: User profile CRUD (DynamoDB)
+      Environment:
+        Variables:
+          PROFILES_TABLE: !Ref ProfilesTable
+          ALLOWED_ORIGIN: !Ref AllowedOrigin
+          NODE_ENV: production
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ProfilesTable
+      Events:
+        GetProfile:
+          Type: Api
+          Properties:
+            RestApiId: !Ref NeuronumApi
+            Path: /api/profile
+            Method: GET
+        PutProfile:
+          Type: Api
+          Properties:
+            RestApiId: !Ref NeuronumApi
+            Path: /api/profile
+            Method: PUT
+        ProfileOptions:
+          Type: Api
+          Properties:
+            RestApiId: !Ref NeuronumApi
+            Path: /api/profile
+            Method: OPTIONS
+            Auth:
+              Authorizer: NONE
 
-  # ── Custom Domain (optional) ──
+  # ══════════════════════════════════════
+  # CUSTOM DOMAIN (optional)
+  # ══════════════════════════════════════
   ApiDomainName:
     Type: AWS::ApiGateway::DomainName
     Condition: HasCustomDomain
@@ -97,8 +277,7 @@ Resources:
       DomainName: !Ref CustomDomainName
       CertificateArn: !Ref CertificateArn
       EndpointConfiguration:
-        Types:
-          - EDGE
+        Types: [EDGE]
 
   ApiBasePathMapping:
     Type: AWS::ApiGateway::BasePathMapping
@@ -113,16 +292,23 @@ Outputs:
   ApiUrl:
     Description: API Gateway endpoint URL
     Value: !Sub "https://${NeuronumApi}.execute-api.${AWS::Region}.amazonaws.com/${StageName}"
+  CognitoDomain:
+    Description: Cognito Hosted UI domain
+    Value: !Sub "${CognitoDomainPrefix}.auth.${AWS::Region}.amazoncognito.com"
+  CognitoClientId:
+    Description: Cognito App Client ID
+    Value: !Ref UserPoolClient
+  UserPoolId:
+    Description: Cognito User Pool ID
+    Value: !Ref UserPool
+  ProfilesTableName:
+    Description: DynamoDB profiles table name
+    Value: !Ref ProfilesTable
   ApiCustomUrl:
     Condition: HasCustomDomain
     Description: Custom domain API URL
     Value: !Sub "https://${CustomDomainName}"
-  ApiDistribution:
+  ApiDistributionDomain:
     Condition: HasCustomDomain
-    Description: >
-      CloudFront distribution domain for CNAME/ALIAS DNS record.
-      Point your custom domain DNS to this value.
+    Description: CloudFront distribution for CNAME DNS record
     Value: !GetAtt ApiDomainName.DistributionDomainName
-  FunctionArn:
-    Description: Lambda function ARN
-    Value: !GetAtt GenerateNotesFunction.Arn

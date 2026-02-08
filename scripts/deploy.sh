@@ -2,36 +2,36 @@
 set -euo pipefail
 
 # ═══════════════════════════════════════════
-# NeuroNum.ai — Deployment Script
+# NeuroNum.ai — AWS Deployment Script
 # ═══════════════════════════════════════════
-# Deploys the Lambda backend via AWS SAM.
-# Frontend is deployed automatically by Amplify
-# when you push to the connected branch.
+# Deploys the full backend stack:
+#   Cognito + DynamoDB + Lambda + API Gateway
 #
 # Prerequisites:
 #   - AWS CLI configured (aws configure)
-#   - AWS SAM CLI installed (brew install aws-sam-cli)
+#   - AWS SAM CLI installed
 #   - Node.js 18+
 #
 # Usage:
-#   ./scripts/deploy.sh                    # Interactive guided deploy
-#   ./scripts/deploy.sh --no-confirm       # Skip confirmation prompts
+#   ./scripts/deploy.sh              # Interactive guided deploy
+#   ./scripts/deploy.sh --no-confirm # Skip confirmation prompts
 # ═══════════════════════════════════════════
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 LAMBDA_DIR="$PROJECT_DIR/lambda"
-STACK_NAME="neuronum-ai-backend"
+STACK_NAME="neuronum-ai"
 REGION="${AWS_REGION:-us-east-1}"
 
 echo ""
-echo "╔══════════════════════════════════════╗"
-echo "║   NeuroNum.ai — Backend Deployment   ║"
-echo "╚══════════════════════════════════════╝"
+echo "╔═══════════════════════════════════════════╗"
+echo "║   NeuroNum.ai — Full AWS Deployment       ║"
+echo "║   Cognito + DynamoDB + Lambda + API GW     ║"
+echo "╚═══════════════════════════════════════════╝"
 echo ""
 
 # ── Step 1: Install Lambda dependencies ──
-echo "→ Installing Lambda dependencies..."
+echo "→ [1/4] Installing Lambda dependencies..."
 cd "$LAMBDA_DIR"
 npm install --production
 cd "$PROJECT_DIR"
@@ -39,19 +39,19 @@ echo "  Done."
 echo ""
 
 # ── Step 2: Validate SAM template ──
-echo "→ Validating SAM template..."
+echo "→ [2/4] Validating SAM template..."
 sam validate --template-file template.yaml --region "$REGION"
-echo "  Template is valid."
+echo "  Template valid."
 echo ""
 
 # ── Step 3: Build ──
-echo "→ Building SAM application..."
+echo "→ [3/4] Building SAM application..."
 sam build --template-file template.yaml
 echo "  Build complete."
 echo ""
 
 # ── Step 4: Deploy ──
-echo "→ Deploying to AWS ($REGION)..."
+echo "→ [4/4] Deploying to AWS ($REGION)..."
 echo ""
 
 if [[ "${1:-}" == "--no-confirm" ]]; then
@@ -74,26 +74,39 @@ echo ""
 echo "═══════════════════════════════════════════"
 echo ""
 
-# ── Step 5: Print outputs ──
-echo "→ Deployment outputs:"
+# ── Print outputs ──
+echo "→ Stack outputs:"
 echo ""
 aws cloudformation describe-stacks \
   --stack-name "$STACK_NAME" \
   --region "$REGION" \
   --query 'Stacks[0].Outputs' \
-  --output table 2>/dev/null || echo "  (Run 'aws cloudformation describe-stacks --stack-name $STACK_NAME' to see outputs)"
+  --output table 2>/dev/null || echo "  (Run manually to see outputs)"
 
 echo ""
 echo "═══════════════════════════════════════════"
 echo ""
 echo "NEXT STEPS:"
 echo ""
-echo "  1. Copy the ApiUrl from the outputs above"
-echo "  2. In the Amplify Console, add environment variable:"
-echo "       API_BASE_URL = <ApiUrl value>"
-echo "  3. Trigger a new Amplify build (push a commit or click 'Redeploy')"
-echo "  4. If using a custom domain for the API, create a CNAME/ALIAS"
-echo "     DNS record pointing to the ApiDistribution value above"
+echo "  1. From the outputs above, copy these values:"
+echo "       - ApiUrl"
+echo "       - CognitoDomain"
+echo "       - CognitoClientId"
 echo ""
-echo "Done! Your backend is live."
+echo "  2. In the AWS Amplify Console, add these env variables:"
+echo "       COGNITO_DOMAIN       = <CognitoDomain>"
+echo "       COGNITO_CLIENT_ID    = <CognitoClientId>"
+echo "       COGNITO_REDIRECT_URI = https://yourdomain.com/auth.html"
+echo "       COGNITO_LOGOUT_URI   = https://yourdomain.com/"
+echo "       COGNITO_REGION       = $REGION"
+echo "       API_BASE_URL         = <ApiUrl>"
+echo ""
+echo "  3. Trigger a new Amplify build (push or click Redeploy)"
+echo ""
+echo "  4. In Cognito Console, update the App Client:"
+echo "       - Callback URL → https://yourdomain.com/auth.html"
+echo "       - Sign-out URL → https://yourdomain.com/"
+echo "       - Add Google and/or Apple to Supported Identity Providers"
+echo ""
+echo "Done!"
 echo ""

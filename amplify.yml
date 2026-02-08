@@ -10,9 +10,12 @@ frontend:
         - |
           cat > js/env-config.js << ENVEOF
           window.__ENV__ = {
-            SUPABASE_URL:  '${SUPABASE_URL}',
-            SUPABASE_ANON: '${SUPABASE_ANON_KEY}',
-            API_BASE:      '${API_BASE_URL}',
+            COGNITO_DOMAIN:       '${COGNITO_DOMAIN}',
+            COGNITO_CLIENT_ID:    '${COGNITO_CLIENT_ID}',
+            COGNITO_REDIRECT_URI: '${COGNITO_REDIRECT_URI}',
+            COGNITO_LOGOUT_URI:   '${COGNITO_LOGOUT_URI}',
+            COGNITO_REGION:       '${COGNITO_REGION}',
+            API_BASE:             '${API_BASE_URL}',
           };
           ENVEOF
         - echo "Build complete"
@@ -35,13 +38,5 @@ frontend:
           value: 'nosniff'
         - key: 'Referrer-Policy'
           value: 'strict-origin-when-cross-origin'
-    - pattern: 'css/*'
-      headers:
-        - key: 'Cache-Control'
-          value: 'public, max-age=31536000, immutable'
-    - pattern: 'js/*'
-      headers:
-        - key: 'Cache-Control'
-          value: 'public, max-age=86400'
   cache:
     paths: []

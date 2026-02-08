@@ -1,14 +1,14 @@
 /* ═══════════════════════════════════════════
    NeuroNum.ai — Environment Configuration
    ═══════════════════════════════════════════
-   This file is overwritten during Amplify build
-   with actual environment variable values.
-   For local development, edit the values below.
+   Overwritten by Amplify build. Edit for local dev.
    ═══════════════════════════════════════════ */
 
 window.__ENV__ = {
-  SUPABASE_URL:  'https://your-project.supabase.co',
-  SUPABASE_ANON: 'your-anon-key',
-  API_BASE:      'http://localhost:3000',         // Local dev: Express server
-  // API_BASE:   'https://your-api-id.execute-api.us-east-1.amazonaws.com/prod',  // Production: API Gateway
+  COGNITO_DOMAIN:       'neuronum.auth.us-east-1.amazoncognito.com',
+  COGNITO_CLIENT_ID:    'your-cognito-client-id',
+  COGNITO_REDIRECT_URI: 'http://localhost:3000/auth.html',
+  COGNITO_LOGOUT_URI:   'http://localhost:3000/',
+  COGNITO_REGION:       'us-east-1',
+  API_BASE:             'http://localhost:3000',
 };

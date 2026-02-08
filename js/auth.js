@@ -1,9 +1,11 @@
 /* ═══════════════════════════════════════════
-   NeuroNum.ai — Authentication Logic
+   NeuroNum.ai — Authentication Page Logic
+   ═══════════════════════════════════════════
+   Handles Cognito Hosted UI OAuth redirect
+   and login button clicks.
    ═══════════════════════════════════════════ */
 
-document.addEventListener('DOMContentLoaded', async () => {
-  const sb = await initSupabase();
+document.addEventListener('DOMContentLoaded', () => {
   const params = new URLSearchParams(window.location.search);
   const mode = params.get('mode') || 'signup';
 
@@ -21,57 +23,54 @@ document.addEventListener('DOMContentLoaded', async () => {
     switchEl.innerHTML = 'Don\'t have an account? <a href="auth.html?mode=signup">Sign up</a>';
   }
 
-  // Check if already logged in
-  const session = await getSession();
-  if (session) {
+  // ── Check for Cognito redirect tokens in URL hash ──
+  const tokens = parseHashTokens();
+  if (tokens) {
+    // Tokens received from Cognito — redirect to profile
     redirectAfterAuth();
     return;
   }
 
-  // Listen for auth state changes (handles OAuth redirect)
-  sb.auth.onAuthStateChange((event, session) => {
-    if (event === 'SIGNED_IN' && session) {
-      redirectAfterAuth();
-    }
+  // ── Already logged in? ──
+  if (isAuthenticated()) {
+    redirectAfterAuth();
+    return;
+  }
+
+  // ── Google OAuth button ──
+  document.getElementById('btnGoogle').addEventListener('click', () => {
+    loginWithGoogle();
   });
 
-  // ── Google OAuth ──
-  document.getElementById('btnGoogle').addEventListener('click', async () => {
-    const { error } = await sb.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        redirectTo: window.location.origin + '/profile.html'
-      }
-    });
-    if (error) showMessage(error.message, 'error');
-  });
-
-  // ── Apple OAuth ──
-  document.getElementById('btnApple').addEventListener('click', async () => {
-    const { error } = await sb.auth.signInWithOAuth({
-      provider: 'apple',
-      options: {
-        redirectTo: window.location.origin + '/profile.html'
-      }
-    });
-    if (error) showMessage(error.message, 'error');
+  // ── Apple OAuth button ──
+  document.getElementById('btnApple').addEventListener('click', () => {
+    loginWithApple();
   });
 });
 
-function redirectAfterAuth() {
-  // Check if profile exists, if not go to profile form
+async function redirectAfterAuth() {
+  // Check if profile already exists
+  try {
+    const res = await authFetch('/api/profile');
+    if (res.ok) {
+      // Profile exists — go to dashboard
+      const data = await res.json();
+      localStorage.setItem('neuronum_profile', JSON.stringify(data));
+      window.location.href = 'dashboard.html';
+      return;
+    }
+  } catch (e) {
+    // Profile doesn't exist or API not reachable — go to profile form
+  }
   window.location.href = 'profile.html';
 }
 
 function showMessage(text, type = 'error') {
   const card = document.getElementById('authCard');
-  // Remove existing messages
   card.querySelectorAll('.auth-message').forEach(el => el.remove());
-
   const msg = document.createElement('div');
   msg.className = `auth-message auth-message--${type}`;
   msg.textContent = text;
   card.querySelector('.auth-header').after(msg);
-
   setTimeout(() => msg.remove(), 5000);
 }
