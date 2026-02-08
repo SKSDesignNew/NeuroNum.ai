@@ -7,28 +7,14 @@ frontend:
     build:
       commands:
         - echo "Injecting environment config..."
-        - |
-          cat > js/env-config.js << ENVEOF
-          window.__ENV__ = {
-            COGNITO_DOMAIN:       '${COGNITO_DOMAIN}',
-            COGNITO_CLIENT_ID:    '${COGNITO_CLIENT_ID}',
-            COGNITO_REDIRECT_URI: '${COGNITO_REDIRECT_URI}',
-            COGNITO_LOGOUT_URI:   '${COGNITO_LOGOUT_URI}',
-            COGNITO_REGION:       '${COGNITO_REGION}',
-            API_BASE:             '${API_BASE_URL}',
-          };
-          ENVEOF
+        - printf "window.__ENV__ = {\n  COGNITO_DOMAIN: '%s',\n  COGNITO_CLIENT_ID: '%s',\n  COGNITO_REDIRECT_URI: '%s',\n  COGNITO_LOGOUT_URI: '%s',\n  COGNITO_REGION: '%s',\n  API_BASE: '%s'\n};\n" "$COGNITO_DOMAIN" "$COGNITO_CLIENT_ID" "$COGNITO_REDIRECT_URI" "$COGNITO_LOGOUT_URI" "$COGNITO_REGION" "$API_BASE_URL" > js/env-config.js
+        - cat js/env-config.js
         - echo "Build complete"
   artifacts:
-    baseDirectory: /
+    baseDirectory: .
     files:
-      - index.html
-      - auth.html
-      - profile.html
-      - dashboard.html
-      - css/**/*
-      - js/**/*
-      - assets/**/*
+      - '**/*'
+    discard-paths: no
   customHeaders:
     - pattern: '**/*'
       headers:
