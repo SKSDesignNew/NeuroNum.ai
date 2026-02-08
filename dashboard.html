@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Study Dashboard — NeuroNum.ai</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body class="dashboard-body">
+  <!-- Navbar -->
+  <nav class="navbar navbar--dash">
+    <div class="nav-inner">
+      <a href="/" class="logo">
+        <svg class="logo-icon" width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="17" stroke="url(#lgd)" stroke-width="2"/>
+          <path d="M11 24V14l7-5 7 5v10l-7 4-7-4z" fill="url(#lgd)" opacity=".15"/>
+          <path d="M11 14l7 4 7-4M18 18v10" stroke="url(#lgd)" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="18" cy="11" r="2.5" fill="url(#lgd)"/>
+          <defs><linearGradient id="lgd" x1="0" y1="0" x2="36" y2="36"><stop stop-color="#06b6d4"/><stop offset="1" stop-color="#10b981"/></linearGradient></defs>
+        </svg>
+        <span class="logo-text">Neuro<strong>Num</strong><small>.ai</small></span>
+      </a>
+
+      <div class="dash-nav-center">
+        <button class="tab-btn active" data-subject="science">Science</button>
+        <button class="tab-btn" data-subject="finance">Finance</button>
+      </div>
+
+      <div class="dash-nav-right">
+        <span class="user-greeting" id="userGreeting">Hi, Student</span>
+        <button class="btn btn-outline btn-sm" id="btnLogout">Log Out</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="dash-main">
+    <!-- Topic Selector -->
+    <div class="topic-selector" id="topicSelector">
+      <h2 id="topicHeading">Select a Topic to Study</h2>
+      <div class="topic-chips" id="topicChips">
+        <!-- Populated dynamically -->
+      </div>
+      <button class="btn btn-primary" id="btnGenerate" disabled>
+        <span class="btn-text">Generate Study Notes</span>
+        <span class="btn-spinner hidden"></span>
+      </button>
+    </div>
+
+    <!-- Study Notes — Side by Side -->
+    <div class="notes-container hidden" id="notesContainer">
+      <div class="notes-header">
+        <button class="btn btn-outline btn-sm" id="btnBack">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          Back to Topics
+        </button>
+        <h2 id="notesTopicTitle">Topic</h2>
+        <span class="grade-badge" id="notesGradeBadge">Grade 9</span>
+      </div>
+
+      <div class="notes-split">
+        <!-- TUTOR A (Claude) -->
+        <div class="notes-panel panel-a">
+          <div class="panel-header">
+            <div class="tutor-avatar tutor-a">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            </div>
+            <div>
+              <h3>Tutor Alpha</h3>
+              <small>Analytical &amp; Detailed</small>
+            </div>
+          </div>
+          <div class="notes-content" id="notesA">
+            <div class="notes-placeholder">
+              <div class="loading-dots"><span></span><span></span><span></span></div>
+              <p>Generating study notes...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- TUTOR B (Gemini) -->
+        <div class="notes-panel panel-b">
+          <div class="panel-header">
+            <div class="tutor-avatar tutor-b">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div>
+              <h3>Tutor Beta</h3>
+              <small>Creative &amp; Intuitive</small>
+            </div>
+          </div>
+          <div class="notes-content" id="notesB">
+            <div class="notes-placeholder">
+              <div class="loading-dots"><span></span><span></span><span></span></div>
+              <p>Generating study notes...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/supabase-client.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
