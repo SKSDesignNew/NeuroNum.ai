@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Complete Your Profile — NeuroNum.ai</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/profile.css" />
+</head>
+<body class="profile-body">
+  <!-- Navbar -->
+  <nav class="navbar navbar--auth">
+    <div class="nav-inner">
+      <a href="/" class="logo">
+        <svg class="logo-icon" width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="17" stroke="url(#lgp)" stroke-width="2"/>
+          <path d="M11 24V14l7-5 7 5v10l-7 4-7-4z" fill="url(#lgp)" opacity=".15"/>
+          <path d="M11 14l7 4 7-4M18 18v10" stroke="url(#lgp)" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="18" cy="11" r="2.5" fill="url(#lgp)"/>
+          <defs><linearGradient id="lgp" x1="0" y1="0" x2="36" y2="36"><stop stop-color="#06b6d4"/><stop offset="1" stop-color="#10b981"/></linearGradient></defs>
+        </svg>
+        <span class="logo-text">Neuro<strong>Num</strong><small>.ai</small></span>
+      </a>
+    </div>
+  </nav>
+
+  <main class="profile-main">
+    <div class="profile-card">
+      <!-- Progress bar -->
+      <div class="progress-bar">
+        <div class="progress-steps">
+          <div class="progress-step active" data-step="1"><span>1</span><small>Personal Info</small></div>
+          <div class="progress-step" data-step="2"><span>2</span><small>Science Topics</small></div>
+          <div class="progress-step" data-step="3"><span>3</span><small>Finance Topics</small></div>
+        </div>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+
+      <form id="profileForm" novalidate>
+        <!-- ═══ STEP 1 — Personal Info ═══ -->
+        <fieldset class="form-step active" id="step1">
+          <legend>Tell Us About Yourself</legend>
+          <p class="step-desc">We'll use this to personalize your learning experience.</p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name <span class="req">*</span></label>
+              <input type="text" id="firstName" name="firstName" required placeholder="e.g. Jordan" autocomplete="given-name" />
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name <span class="req">*</span></label>
+              <input type="text" id="lastName" name="lastName" required placeholder="e.g. Smith" autocomplete="family-name" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="grade">Grade <span class="req">*</span></label>
+            <select id="grade" name="grade" required>
+              <option value="">Select your grade</option>
+              <option value="9">9th Grade (Freshman)</option>
+              <option value="10">10th Grade (Sophomore)</option>
+              <option value="11">11th Grade (Junior)</option>
+              <option value="12">12th Grade (Senior)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="state">State <span class="req">*</span></label>
+            <select id="state" name="state" required>
+              <option value="">Select your state</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="township">School Township / District <span class="req">*</span></label>
+            <select id="township" name="township" required disabled>
+              <option value="">Select state first</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="highSchool">Name of High School <span class="req">*</span></label>
+            <input type="text" id="highSchool" name="highSchool" required placeholder="e.g. Lincoln High School" />
+          </div>
+
+          <div class="form-actions">
+            <span></span>
+            <button type="button" class="btn btn-primary" id="toStep2">Continue to Science Topics</button>
+          </div>
+        </fieldset>
+
+        <!-- ═══ STEP 2 — Science Topics ═══ -->
+        <fieldset class="form-step" id="step2">
+          <legend id="scienceLegend">Science Topics for Your Grade</legend>
+          <p class="step-desc">Select the science topics you'd like to improve on. We'll build your study plan around these.</p>
+
+          <div class="topic-grid" id="scienceTopics">
+            <!-- Populated dynamically by JS based on grade -->
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-outline" id="backToStep1">Back</button>
+            <button type="button" class="btn btn-primary" id="toStep3">Continue to Finance Topics</button>
+          </div>
+        </fieldset>
+
+        <!-- ═══ STEP 3 — Finance Topics ═══ -->
+        <fieldset class="form-step" id="step3">
+          <legend id="financeLegend">Finance Topics for Your Grade</legend>
+          <p class="step-desc">Select the financial literacy topics you'd like to focus on.</p>
+
+          <div class="topic-grid" id="financeTopics">
+            <!-- Populated dynamically by JS based on grade -->
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-outline" id="backToStep2">Back</button>
+            <button type="submit" class="btn btn-primary" id="submitProfile">
+              <span class="btn-text">Create My Study Plan</span>
+              <span class="btn-spinner hidden"></span>
+            </button>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </main>
+
+  <script src="js/env-config.js"></script>
+  <script src="js/aws-auth.js"></script>
+  <script src="js/profile.js"></script>
+</body>
+</html>

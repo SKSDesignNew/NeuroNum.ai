@@ -1,0 +1,28 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - echo "No build dependencies for static frontend"
+    build:
+      commands:
+        - echo "Injecting environment config..."
+        - printf "window.__ENV__ = {\n  COGNITO_DOMAIN: '%s',\n  COGNITO_CLIENT_ID: '%s',\n  COGNITO_REDIRECT_URI: '%s',\n  COGNITO_LOGOUT_URI: '%s',\n  COGNITO_REGION: '%s',\n  API_BASE: '%s'\n};\n" "$COGNITO_DOMAIN" "$COGNITO_CLIENT_ID" "$COGNITO_REDIRECT_URI" "$COGNITO_LOGOUT_URI" "$COGNITO_REGION" "$API_BASE_URL" > js/env-config.js
+        - cat js/env-config.js
+        - echo "Build complete"
+  artifacts:
+    baseDirectory: .
+    files:
+      - '**/*'
+    discard-paths: no
+  customHeaders:
+    - pattern: '**/*'
+      headers:
+        - key: 'X-Frame-Options'
+          value: 'DENY'
+        - key: 'X-Content-Type-Options'
+          value: 'nosniff'
+        - key: 'Referrer-Policy'
+          value: 'strict-origin-when-cross-origin'
+  cache:
+    paths: []

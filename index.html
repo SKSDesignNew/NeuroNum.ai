@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeuroNum.ai — Adaptive AI Tutoring for Grades 9–12</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- ───────── NAVBAR ───────── -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="/" class="logo" aria-label="NeuroNum.ai Home">
+        <svg class="logo-icon" width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="17" stroke="url(#lg)" stroke-width="2"/>
+          <path d="M11 24V14l7-5 7 5v10l-7 4-7-4z" fill="url(#lg)" opacity=".15"/>
+          <path d="M11 14l7 4 7-4M18 18v10" stroke="url(#lg)" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="18" cy="11" r="2.5" fill="url(#lg)"/>
+          <circle cx="11" cy="14" r="1.5" fill="#06b6d4"/>
+          <circle cx="25" cy="14" r="1.5" fill="#10b981"/>
+          <defs>
+            <linearGradient id="lg" x1="0" y1="0" x2="36" y2="36">
+              <stop stop-color="#06b6d4"/><stop offset="1" stop-color="#10b981"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="logo-text">Neuro<strong>Num</strong><small>.ai</small></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#science-section">Science</a></li>
+        <li><a href="#finance-section">Finance</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="auth.html" class="btn btn-outline btn-sm">Log In</a>
+        <a href="auth.html?mode=signup" class="btn btn-primary btn-sm">Create Your Account</a>
+      </div>
+
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ───────── HERO ───────── -->
+  <header class="hero">
+    <div class="hero-bg">
+      <div class="hero-grid"></div>
+    </div>
+    <div class="hero-content">
+      <span class="hero-badge">Powered by Adaptive AI</span>
+      <h1>Smart Tutoring That <span class="gradient-text">Meets You Where You Are</span></h1>
+      <p class="hero-sub">Personalized study plans, instant help, and progress tracking for grades 9&ndash;12. Master <strong>Science</strong> and <strong>Financial Literacy</strong> with AI that adapts to your learning style.</p>
+      <div class="hero-ctas">
+        <a href="auth.html?mode=signup" class="btn btn-primary btn-lg">Get Started Free</a>
+        <a href="#how-it-works" class="btn btn-ghost btn-lg">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          See How It Works
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-number">9–12</span><span class="stat-label">Grades</span></div>
+        <div class="stat"><span class="stat-number">2</span><span class="stat-label">AI Tutors</span></div>
+        <div class="stat"><span class="stat-number">24/7</span><span class="stat-label">Availability</span></div>
+        <div class="stat"><span class="stat-number">100%</span><span class="stat-label">Personalized</span></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ───────── SPLIT SUBJECTS ───────── -->
+  <section class="split-section" id="subjects">
+    <!-- SCIENCE HALF -->
+    <div class="split-panel science-panel" id="science-section">
+      <div class="panel-bg">
+        <svg class="atom-svg" viewBox="0 0 200 200" fill="none">
+          <ellipse cx="100" cy="100" rx="90" ry="30" stroke="#06b6d4" stroke-width="1" opacity=".25" transform="rotate(-30 100 100)"/>
+          <ellipse cx="100" cy="100" rx="90" ry="30" stroke="#06b6d4" stroke-width="1" opacity=".25" transform="rotate(30 100 100)"/>
+          <ellipse cx="100" cy="100" rx="90" ry="30" stroke="#06b6d4" stroke-width="1" opacity=".25"/>
+          <circle cx="100" cy="100" r="8" fill="#06b6d4" opacity=".4"/>
+        </svg>
+      </div>
+      <div class="panel-content">
+        <span class="panel-label">Science Track</span>
+        <h2>Explore the Universe of <span class="text-cyan">Science</span></h2>
+        <p>From biology and chemistry to physics and earth science &mdash; our AI tutor builds a study path tailored to your grade and skill level.</p>
+        <ul class="feature-list">
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Biology, Chemistry, Physics, Earth Science
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Grade-aligned curriculum (9th&ndash;12th)
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            SAT/ACT Science prep with smart drills
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Interactive labs and visual explanations
+          </li>
+        </ul>
+        <a href="auth.html?mode=signup&track=science" class="btn btn-cyan">Start Science Track</a>
+      </div>
+    </div>
+
+    <!-- FINANCE HALF -->
+    <div class="split-panel finance-panel" id="finance-section">
+      <div class="panel-bg">
+        <svg class="chart-svg" viewBox="0 0 200 200" fill="none">
+          <polyline points="20,160 50,140 80,150 110,100 140,110 170,60" stroke="#10b981" stroke-width="2" opacity=".3" fill="none"/>
+          <polyline points="20,170 60,155 100,130 140,120 180,80" stroke="#10b981" stroke-width="1.5" opacity=".2" fill="none"/>
+          <circle cx="170" cy="60" r="6" fill="#10b981" opacity=".3"/>
+          <circle cx="140" cy="110" r="4" fill="#10b981" opacity=".25"/>
+          <rect x="30" y="140" width="12" height="40" rx="2" fill="#10b981" opacity=".15"/>
+          <rect x="60" y="120" width="12" height="60" rx="2" fill="#10b981" opacity=".15"/>
+          <rect x="90" y="100" width="12" height="80" rx="2" fill="#10b981" opacity=".15"/>
+          <rect x="120" y="80" width="12" height="100" rx="2" fill="#10b981" opacity=".15"/>
+          <rect x="150" y="60" width="12" height="120" rx="2" fill="#10b981" opacity=".15"/>
+        </svg>
+      </div>
+      <div class="panel-content">
+        <span class="panel-label panel-label--green">Finance Track</span>
+        <h2>Build Your <span class="text-green">Financial Future</span></h2>
+        <p>Learn budgeting, investing, credit, and tax fundamentals. Real-world financial literacy designed for every high school grade level.</p>
+        <ul class="feature-list">
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Budgeting, Saving, Banking, Credit
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Investing, Stock Market, Compound Interest
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Tax Basics, College Finance Planning
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Real-world simulations and case studies
+          </li>
+        </ul>
+        <a href="auth.html?mode=signup&track=finance" class="btn btn-green">Start Finance Track</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── FEATURES ───────── -->
+  <section class="features-section" id="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Platform Features</span>
+        <h2>Everything You Need to <span class="gradient-text">Succeed</span></h2>
+        <p>Our AI-powered platform adapts to every student, providing the right support at the right time.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon feature-icon--cyan">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <h3>Adaptive Learning Pathways</h3>
+          <p>AI continuously adjusts difficulty, pacing, and content based on your performance. No two learning paths are alike.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon feature-icon--green">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          </div>
+          <h3>Dual AI Tutors</h3>
+          <p>Get study notes from two independent AI perspectives side-by-side. Compare explanations and find what clicks for you.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon feature-icon--purple">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <h3>SAT/ACT Smart Drills</h3>
+          <p>AI-generated practice questions targeting your weak spots. Focused prep that maximizes your score improvements.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon feature-icon--amber">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Parent &amp; Teacher Dashboards</h3>
+          <p>Real-time progress reports, topic mastery tracking, and actionable insights for parents and educators.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── HOW IT WORKS ───────── -->
+  <section class="how-section" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Getting Started</span>
+        <h2>Up and Running in <span class="gradient-text">3 Steps</span></h2>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3>Create Your Account</h3>
+          <p>Sign up with Google or Apple in seconds. Tell us your grade, school, and the subjects you want to improve.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3>Get Your Study Plan</h3>
+          <p>Our AI builds a personalized learning path based on your grade level and the topics you selected.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3>Learn &amp; Track Progress</h3>
+          <p>Study with dual AI tutors, take smart drills, and watch your mastery grow on your personal dashboard.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── CTA ───────── -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <h2>Ready to Learn Smarter?</h2>
+        <p>Join thousands of high school students building stronger foundations in Science and Finance with AI-powered tutoring.</p>
+        <a href="auth.html?mode=signup" class="btn btn-primary btn-lg">Create Your Free Account</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── FOOTER ───────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="logo">
+            <svg class="logo-icon" width="32" height="32" viewBox="0 0 36 36" fill="none">
+              <circle cx="18" cy="18" r="17" stroke="url(#lg2)" stroke-width="2"/>
+              <path d="M11 24V14l7-5 7 5v10l-7 4-7-4z" fill="url(#lg2)" opacity=".15"/>
+              <path d="M11 14l7 4 7-4M18 18v10" stroke="url(#lg2)" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="18" cy="11" r="2.5" fill="url(#lg2)"/>
+              <defs><linearGradient id="lg2" x1="0" y1="0" x2="36" y2="36"><stop stop-color="#06b6d4"/><stop offset="1" stop-color="#10b981"/></linearGradient></defs>
+            </svg>
+            <span class="logo-text">Neuro<strong>Num</strong><small>.ai</small></span>
+          </a>
+          <p>Adaptive AI tutoring for high school students. Science &amp; Financial Literacy for grades 9&ndash;12.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Platform</h4>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#science-section">Science Track</a></li>
+            <li><a href="#finance-section">Finance Track</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#">SAT/ACT Prep</a></li>
+            <li><a href="#">Study Guides</a></li>
+            <li><a href="#">Parent Portal</a></li>
+            <li><a href="#">Teacher Portal</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 NeuroNum.ai. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/env-config.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
