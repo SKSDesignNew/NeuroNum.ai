@@ -95,7 +95,27 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await res.json();
       renderSchoolResults(data.schoolList || []);
     } catch (e) {
-      schoolResults.innerHTML = '<div class="school-search-loading">Search unavailable. Please try again.</div>';
+      // API unavailable — let user type school name manually
+      schoolResults.innerHTML = '';
+      const fallback = document.createElement('div');
+      fallback.className = 'school-result-item school-fallback';
+      fallback.innerHTML = `<div class="school-name">Use "${query}" as my school</div><div class="school-detail">Tap here to confirm your school name</div>`;
+      fallback.addEventListener('click', () => {
+        hiddenSchool.value = query;
+        hiddenTownship.value = '';
+        schoolSearch.value = query;
+        schoolResults.classList.remove('open');
+        selectedSchoolEl.innerHTML = `<span>${query} — ${US_STATES[st] || st}</span><span class="clear-school" id="clearSchool">✕ Change</span>`;
+        selectedSchoolEl.classList.add('visible');
+        document.getElementById('clearSchool').addEventListener('click', () => {
+          hiddenSchool.value = '';
+          hiddenTownship.value = '';
+          schoolSearch.value = '';
+          selectedSchoolEl.classList.remove('visible');
+          schoolSearch.focus();
+        });
+      });
+      schoolResults.appendChild(fallback);
     }
   }
 
