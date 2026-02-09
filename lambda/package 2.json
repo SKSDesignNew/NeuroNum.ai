@@ -1,0 +1,11 @@
+{
+  "name": "neuronum-ai-lambda",
+  "version": "1.0.0",
+  "description": "Lambda functions for NeuroNum.ai (AI generation + profile CRUD)",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "@aws-sdk/client-dynamodb": "^3.700.0",
+    "@aws-sdk/lib-dynamodb": "^3.700.0",
+    "@google/generative-ai": "^0.21.0"
+  }
+}
