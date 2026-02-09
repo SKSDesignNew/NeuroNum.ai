@@ -65,7 +65,7 @@
         <text x="68" y="34" font-family="'Fraunces',Georgia,serif" font-weight="700" font-size="26" fill="#fff"><tspan fill="#00ffc8">Neuro</tspan><tspan fill="#ff3cac">Num</tspan></text>
         <text x="232" y="34" font-family="'IBM Plex Mono',monospace" font-size="12" fill="rgba(255,255,255,0.15)" letter-spacing="2">.ai</text>
         </svg>
-        <span class="logo-text"><span class="neuro">Neuro</span><span class="num">Num</span><span class="ai">.ai</span></span>
+
       </a>
     </div>
   </nav>
@@ -76,8 +76,7 @@
       <div class="progress-bar">
         <div class="progress-steps">
           <div class="progress-step active" data-step="1"><span>1</span><small>Personal Info</small></div>
-          <div class="progress-step" data-step="2"><span>2</span><small>Science Topics</small></div>
-          <div class="progress-step" data-step="3"><span>3</span><small>Finance Topics</small></div>
+          <div class="progress-step" data-step="2"><span>2</span><small>Choose Topics</small></div>
         </div>
         <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
       </div>
@@ -118,49 +117,33 @@
           </div>
 
           <div class="form-group">
-            <label for="township">School Township / District <span class="req">*</span></label>
-            <select id="township" name="township" required disabled>
-              <option value="">Select state first</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="highSchool">Name of High School <span class="req">*</span></label>
-            <input type="text" id="highSchool" name="highSchool" required placeholder="e.g. Lincoln High School" />
+            <label for="schoolSearch">Search Your High School <span class="req">*</span></label>
+            <input type="text" id="schoolSearch" placeholder="Start typing your school name..." autocomplete="off" disabled />
+            <div class="school-results" id="schoolResults"></div>
+            <input type="hidden" id="highSchool" name="highSchool" required />
+            <input type="hidden" id="township" name="township" />
+            <div class="selected-school" id="selectedSchool"></div>
           </div>
 
           <div class="form-actions">
             <span></span>
-            <button type="button" class="btn btn-primary" id="toStep2">Continue to Science Topics</button>
+            <button type="button" class="btn btn-primary" id="toStep2">Choose Your Topics</button>
           </div>
         </fieldset>
 
-        <!-- ═══ STEP 2 — Science Topics ═══ -->
+        <!-- ═══ STEP 2 — Subject & Topic Selection ═══ -->
         <fieldset class="form-step" id="step2">
-          <legend id="scienceLegend">Science Topics for Your Grade</legend>
-          <p class="step-desc">Select the science topics you'd like to improve on. We'll build your study plan around these.</p>
+          <legend id="subjectsLegend">Your Subjects</legend>
+          <p class="step-desc">Select subjects you'd like to study, then pick specific topics within each. Click a subject card to choose topics.</p>
 
-          <div class="topic-grid" id="scienceTopics">
-            <!-- Populated dynamically by JS based on grade -->
-          </div>
+          <h3 class="subject-category-title">Science</h3>
+          <div class="subject-grid" id="scienceSubjects"></div>
+
+          <h3 class="subject-category-title finance-title">Finance &amp; Business</h3>
+          <div class="subject-grid" id="financeSubjects"></div>
 
           <div class="form-actions">
             <button type="button" class="btn btn-outline" id="backToStep1">Back</button>
-            <button type="button" class="btn btn-primary" id="toStep3">Continue to Finance Topics</button>
-          </div>
-        </fieldset>
-
-        <!-- ═══ STEP 3 — Finance Topics ═══ -->
-        <fieldset class="form-step" id="step3">
-          <legend id="financeLegend">Finance Topics for Your Grade</legend>
-          <p class="step-desc">Select the financial literacy topics you'd like to focus on.</p>
-
-          <div class="topic-grid" id="financeTopics">
-            <!-- Populated dynamically by JS based on grade -->
-          </div>
-
-          <div class="form-actions">
-            <button type="button" class="btn btn-outline" id="backToStep2">Back</button>
             <button type="submit" class="btn btn-primary" id="submitProfile">
               <span class="btn-text">Create My Study Plan</span>
               <span class="btn-spinner hidden"></span>
@@ -168,11 +151,30 @@
           </div>
         </fieldset>
       </form>
+
+      <!-- ═══ Topic Selection Modal ═══ -->
+      <div class="topic-modal-overlay" id="topicModal">
+        <div class="topic-modal">
+          <div class="topic-modal-header">
+            <div>
+              <h3 class="topic-modal-title" id="modalTitle">Select Topics</h3>
+              <p class="topic-modal-desc" id="modalDesc">Choose the topics you want AI-generated notes for.</p>
+            </div>
+            <button class="topic-modal-close" id="modalClose" type="button">&times;</button>
+          </div>
+          <div class="topic-modal-body" id="modalTopics"></div>
+          <div class="topic-modal-footer">
+            <span class="topic-modal-count" id="modalCount">0 topics selected</span>
+            <button class="btn btn-primary" id="modalDone" type="button">Done</button>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
 
   <script src="js/env-config.js"></script>
   <script src="js/aws-auth.js"></script>
+  <script src="js/standards-data.js"></script>
   <script src="js/profile.js"></script>
 </body>
 </html>
