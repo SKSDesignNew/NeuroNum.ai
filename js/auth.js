@@ -42,9 +42,9 @@ document.addEventListener('DOMContentLoaded', () => {
     loginWithGoogle();
   });
 
-  // ── Apple OAuth button ──
-  document.getElementById('btnApple').addEventListener('click', () => {
-    loginWithApple();
+  // ── Email sign-up/login button ──
+  document.getElementById('btnEmail').addEventListener('click', () => {
+    loginWithEmail();
   });
 });
 

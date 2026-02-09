@@ -121,6 +121,11 @@ function loginWithApple() {
   window.location.href = buildAuthUrl('SignInWithApple');
 }
 
+function loginWithEmail() {
+  // No identity_provider → Cognito shows its hosted email/password form
+  window.location.href = buildAuthUrl();
+}
+
 function logout() {
   clearTokens();
   const logoutUrl = `https://${AUTH_CONFIG.domain}/logout?` +

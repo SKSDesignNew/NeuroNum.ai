@@ -31,7 +31,7 @@
 }
 .btn-oauth:hover{border-color:var(--text-3);background:var(--bg-2)}
 .btn-google:hover{border-color:#4285F4;color:#fff}
-.btn-apple:hover{border-color:#fff;color:#fff}
+.btn-email:hover{border-color:#00ffc8;color:#fff}
 
 /* Divider */
 .auth-divider{
