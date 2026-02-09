@@ -269,8 +269,53 @@ document.addEventListener('DOMContentLoaded', () => {
     return valid;
   }
 
-  document.getElementById('toStep2').addEventListener('click', () => { if (!validateStep1()) return; updateTopicsForGrade(); goToStep(2); });
-  document.getElementById('toStep3').addEventListener('click', () => { if (selectedScience.size === 0) { alert('Please select at least one science topic.'); return; } goToStep(3); });
+  // ── Helper: build profile data from form ──
+  function buildProfileData() {
+    return {
+      first_name: document.getElementById('firstName').value.trim(),
+      last_name: document.getElementById('lastName').value.trim(),
+      grade: parseInt(gradeSelect.value),
+      state: stateSelect.value,
+      township: hiddenTownship.value,
+      high_school: hiddenSchool.value,
+      science_topics: Array.from(selectedScience),
+      finance_topics: Array.from(selectedFinance),
+      email: currentUser.email || '',
+    };
+  }
+
+  // ── Save profile to DynamoDB ──
+  async function saveProfileToDb(data) {
+    try {
+      const res = await authFetch('/api/profile', { method: 'PUT', body: JSON.stringify(data) });
+      if (res.ok) {
+        const result = await res.json();
+        localStorage.setItem('neuronum_profile', JSON.stringify(result.profile || data));
+        return true;
+      }
+    } catch (e) {
+      console.warn('Profile save error (will retry on final step):', e);
+    }
+    // Save locally even if API fails
+    localStorage.setItem('neuronum_profile', JSON.stringify(data));
+    return false;
+  }
+
+  document.getElementById('toStep2').addEventListener('click', async () => {
+    if (!validateStep1()) return;
+    updateTopicsForGrade();
+    // Save personal info to DB
+    const data = buildProfileData();
+    saveProfileToDb(data);
+    goToStep(2);
+  });
+  document.getElementById('toStep3').addEventListener('click', async () => {
+    if (selectedScience.size === 0) { alert('Please select at least one science topic.'); return; }
+    // Save with science topics
+    const data = buildProfileData();
+    saveProfileToDb(data);
+    goToStep(3);
+  });
   document.getElementById('backToStep1').addEventListener('click', () => goToStep(1));
   document.getElementById('backToStep2').addEventListener('click', () => goToStep(2));
 
@@ -285,23 +330,11 @@ document.addEventListener('DOMContentLoaded', () => {
     btnText.textContent = 'Creating your profile...';
     btnSpinner.classList.remove('hidden');
 
-    const profileData = {
-      first_name: document.getElementById('firstName').value.trim(),
-      last_name: document.getElementById('lastName').value.trim(),
-      grade: parseInt(gradeSelect.value),
-      state: stateSelect.value,
-      township: townSelect.value,
-      high_school: document.getElementById('highSchool').value.trim(),
-      science_topics: Array.from(selectedScience),
-      finance_topics: Array.from(selectedFinance),
-      email: currentUser.email || '',
-    };
+    const profileData = buildProfileData();
 
     try {
-      const res = await authFetch('/api/profile', { method: 'PUT', body: JSON.stringify(profileData) });
-      if (!res.ok) { const err = await res.json().catch(() => ({})); throw new Error(err.error || 'Failed to save'); }
-      const result = await res.json();
-      localStorage.setItem('neuronum_profile', JSON.stringify(result.profile || profileData));
+      const saved = await saveProfileToDb(profileData);
+      if (!saved) console.warn('API save failed, but profile stored locally');
       window.location.href = 'dashboard.html';
     } catch (err) {
       console.error('Profile save error:', err);
