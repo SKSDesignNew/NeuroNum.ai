@@ -2,77 +2,6 @@
    NeuroNum.ai — Multi-Step Profile Form
    ═══════════════════════════════════════════ */
 
-// ── Topic definitions by grade ──
-const SCIENCE_TOPICS = {
-  9: [
-    { id: 'bio_intro',       name: 'Introduction to Biology', desc: 'Cell structure, genetics basics, ecosystems' },
-    { id: 'earth_science',   name: 'Earth Science',           desc: 'Geology, weather, natural resources' },
-    { id: 'physical_sci',    name: 'Physical Science',        desc: 'Motion, forces, energy fundamentals' },
-    { id: 'env_awareness',   name: 'Environmental Awareness', desc: 'Climate, pollution, sustainability' },
-    { id: 'sci_method',      name: 'Scientific Method',       desc: 'Hypothesis, experiments, data analysis' },
-    { id: 'human_body_9',    name: 'Human Body Basics',       desc: 'Organ systems, nutrition, health' },
-  ],
-  10: [
-    { id: 'chemistry',       name: 'Chemistry',               desc: 'Atoms, periodic table, chemical reactions' },
-    { id: 'biology_2',       name: 'Biology II',              desc: 'Evolution, ecology, molecular biology' },
-    { id: 'organic_intro',   name: 'Intro to Organic Chemistry', desc: 'Carbon compounds, hydrocarbons' },
-    { id: 'genetics',        name: 'Genetics & DNA',          desc: 'Heredity, DNA replication, mutations' },
-    { id: 'lab_skills',      name: 'Lab Skills & Safety',     desc: 'Lab techniques, measurements, safety' },
-    { id: 'sci_research',    name: 'Scientific Research',     desc: 'Research design, peer review, data' },
-  ],
-  11: [
-    { id: 'physics',         name: 'Physics',                 desc: 'Mechanics, waves, electricity, magnetism' },
-    { id: 'ap_chemistry',    name: 'AP Chemistry',            desc: 'Thermodynamics, kinetics, equilibrium' },
-    { id: 'ap_biology',      name: 'AP Biology',              desc: 'Advanced cell biology, biotechnology' },
-    { id: 'anatomy',         name: 'Anatomy & Physiology',    desc: 'Detailed human body systems' },
-    { id: 'sat_science',     name: 'SAT Science Prep',        desc: 'Data interpretation, experiment design' },
-    { id: 'astro_intro',     name: 'Intro to Astronomy',      desc: 'Solar system, stars, galaxies, cosmology' },
-  ],
-  12: [
-    { id: 'ap_physics',      name: 'AP Physics',              desc: 'Advanced mechanics, E&M, modern physics' },
-    { id: 'env_science_adv', name: 'AP Environmental Science',desc: 'Ecosystems, biodiversity, sustainability' },
-    { id: 'biochem',         name: 'Biochemistry',            desc: 'Proteins, enzymes, metabolism' },
-    { id: 'engineering',     name: 'Engineering Principles',  desc: 'Design process, materials, structures' },
-    { id: 'act_science',     name: 'ACT Science Prep',        desc: 'Passage analysis, conflicting viewpoints' },
-    { id: 'research_proj',   name: 'Research Project Skills', desc: 'Capstone projects, scientific writing' },
-  ],
-};
-
-const FINANCE_TOPICS = {
-  9: [
-    { id: 'budgeting',       name: 'Budgeting Basics',        desc: 'Income vs expenses, tracking spending' },
-    { id: 'saving_101',      name: 'Saving Fundamentals',     desc: 'Emergency fund, savings goals, interest' },
-    { id: 'money_mindset',   name: 'Money Mindset',           desc: 'Needs vs wants, delayed gratification' },
-    { id: 'banking_basics',  name: 'Banking Basics',          desc: 'Checking, savings, debit cards' },
-    { id: 'earning_income',  name: 'Earning Income',          desc: 'Jobs, entrepreneurship, paychecks' },
-    { id: 'smart_consumer',  name: 'Being a Smart Consumer',  desc: 'Comparing prices, avoiding scams' },
-  ],
-  10: [
-    { id: 'credit_intro',    name: 'Credit & Debt',           desc: 'Credit scores, cards, responsible use' },
-    { id: 'banking_adv',     name: 'Advanced Banking',        desc: 'Interest rates, loans, account types' },
-    { id: 'taxes_intro',     name: 'Introduction to Taxes',   desc: 'W-2s, tax brackets, filing basics' },
-    { id: 'insurance_101',   name: 'Insurance Basics',        desc: 'Health, auto, types of coverage' },
-    { id: 'financial_goals', name: 'Financial Goal Setting',  desc: 'Short-term and long-term planning' },
-    { id: 'econ_basics',     name: 'Economics Basics',        desc: 'Supply & demand, inflation, GDP' },
-  ],
-  11: [
-    { id: 'investing',       name: 'Investing Fundamentals',  desc: 'Stocks, bonds, mutual funds, ETFs' },
-    { id: 'stock_market',    name: 'Stock Market',            desc: 'How markets work, reading charts' },
-    { id: 'compound_int',    name: 'Compound Interest',       desc: 'Time value of money, growth calculations' },
-    { id: 'retirement_101',  name: 'Retirement Planning',     desc: '401(k), IRA, Roth, employer matching' },
-    { id: 'risk_mgmt',       name: 'Risk Management',         desc: 'Diversification, risk tolerance' },
-    { id: 'sat_math_fin',    name: 'SAT Math — Finance Qs',   desc: 'Percent, interest, data problems' },
-  ],
-  12: [
-    { id: 'college_finance', name: 'College Finance',         desc: 'FAFSA, scholarships, student loans' },
-    { id: 'tax_planning',    name: 'Tax Planning',            desc: 'Deductions, credits, W-4 strategy' },
-    { id: 'real_estate',     name: 'Real Estate Basics',      desc: 'Renting vs buying, mortgages' },
-    { id: 'entrepreneurship',name: 'Entrepreneurship',        desc: 'Business plans, revenue, profit' },
-    { id: 'crypto_fintech',  name: 'Crypto & Fintech',        desc: 'Digital assets, fintech tools, risks' },
-    { id: 'adulting_finance',name: 'Adulting Finance',         desc: 'Apartment costs, bills, credit building' },
-  ],
-};
-
 // ── SchoolDigger API config ──
 const SCHOOL_API = {
   base: 'https://api.schooldigger.com/v2.0/schools',
@@ -88,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const currentUser = requireAuth();
   if (!currentUser) return;
 
+  // ── DOM refs ──
   const form = document.getElementById('profileForm');
   const steps = document.querySelectorAll('.form-step');
   const progSteps = document.querySelectorAll('.progress-step');
@@ -95,12 +25,31 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentStep = 1;
 
   const stateSelect = document.getElementById('state');
+  const gradeSelect = document.getElementById('grade');
   const schoolSearch = document.getElementById('schoolSearch');
   const schoolResults = document.getElementById('schoolResults');
   const hiddenSchool = document.getElementById('highSchool');
   const hiddenTownship = document.getElementById('township');
   const selectedSchoolEl = document.getElementById('selectedSchool');
   let searchTimeout = null;
+
+  // ── Subject & topic selection state ──
+  // { subjectId: Set([topicId, topicId, ...]) }
+  const selectedTopics = {};
+
+  // ── Modal refs ──
+  const topicModal = document.getElementById('topicModal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDesc = document.getElementById('modalDesc');
+  const modalTopics = document.getElementById('modalTopics');
+  const modalCount = document.getElementById('modalCount');
+  const modalClose = document.getElementById('modalClose');
+  const modalDone = document.getElementById('modalDone');
+  let activeModalSubject = null;
+
+  // ══════════════════════════════════════
+  //  STEP 1 — Personal Info
+  // ══════════════════════════════════════
 
   // Populate states
   Object.entries(US_STATES)
@@ -192,42 +141,119 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  const gradeSelect = document.getElementById('grade');
-  const scienceGrid = document.getElementById('scienceTopics');
-  const financeGrid = document.getElementById('financeTopics');
-  const scienceLegend = document.getElementById('scienceLegend');
-  const financeLegend = document.getElementById('financeLegend');
-  let selectedScience = new Set();
-  let selectedFinance = new Set();
+  // ══════════════════════════════════════
+  //  STEP 2 — Subject & Topic Selection
+  // ══════════════════════════════════════
 
-  function renderTopics(grid, topics, selectedSet, cssClass = '') {
-    grid.innerHTML = '';
-    topics.forEach(topic => {
+  function renderSubjects() {
+    const grade = parseInt(gradeSelect.value);
+    if (!grade) return;
+
+    const subjects = getSubjectsForGrade(grade);
+    const scienceGrid = document.getElementById('scienceSubjects');
+    const financeGrid = document.getElementById('financeSubjects');
+    scienceGrid.innerHTML = '';
+    financeGrid.innerHTML = '';
+
+    document.getElementById('subjectsLegend').textContent = `Subjects — ${grade}th Grade`;
+
+    subjects.forEach(subj => {
+      const grid = subj.category === 'science' ? scienceGrid : financeGrid;
+      const topicCount = (selectedTopics[subj.id] || new Set()).size;
+
       const card = document.createElement('div');
-      card.className = `topic-card ${cssClass}`;
-      card.dataset.id = topic.id;
-      if (selectedSet.has(topic.id)) card.classList.add('selected');
-      card.innerHTML = `<div class="topic-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="topic-info"><h4>${topic.name}</h4><p>${topic.desc}</p></div>`;
-      card.addEventListener('click', () => {
-        if (selectedSet.has(topic.id)) { selectedSet.delete(topic.id); card.classList.remove('selected'); }
-        else { selectedSet.add(topic.id); card.classList.add('selected'); }
-      });
+      card.className = `subject-card ${subj.category === 'finance' ? 'subject-card--finance' : ''}`;
+      if (topicCount > 0) card.classList.add('has-topics');
+      card.dataset.subject = subj.id;
+
+      card.innerHTML = `
+        <div class="subject-icon">${subj.icon}</div>
+        <div class="subject-info">
+          <h4>${subj.name}</h4>
+          <p>${subj.desc}</p>
+        </div>
+        <div class="subject-badge ${topicCount > 0 ? 'visible' : ''}">${topicCount} topic${topicCount !== 1 ? 's' : ''}</div>
+        <div class="subject-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      `;
+
+      card.addEventListener('click', () => openTopicModal(subj));
       grid.appendChild(card);
     });
   }
 
-  function updateTopicsForGrade() {
-    const grade = gradeSelect.value;
-    if (!grade) return;
-    scienceLegend.textContent = `Science Topics — ${grade}th Grade`;
-    financeLegend.textContent = `Finance Topics — ${grade}th Grade`;
-    selectedScience.clear();
-    selectedFinance.clear();
-    renderTopics(scienceGrid, SCIENCE_TOPICS[grade] || [], selectedScience);
-    renderTopics(financeGrid, FINANCE_TOPICS[grade] || [], selectedFinance, 'finance-topic');
+  // ══════════════════════════════════════
+  //  Topic Modal
+  // ══════════════════════════════════════
+
+  function openTopicModal(subj) {
+    activeModalSubject = subj;
+    if (!selectedTopics[subj.id]) selectedTopics[subj.id] = new Set();
+    const selected = selectedTopics[subj.id];
+
+    modalTitle.textContent = subj.name;
+    modalDesc.textContent = `Select the ${subj.name.toLowerCase()} topics you want AI-generated study notes for.`;
+    modalTopics.innerHTML = '';
+
+    subj.topics.forEach(topic => {
+      const item = document.createElement('div');
+      item.className = 'topic-card';
+      if (selected.has(topic.id)) item.classList.add('selected');
+      if (subj.category === 'finance') item.classList.add('finance-topic');
+
+      item.innerHTML = `
+        <div class="topic-check">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="topic-info">
+          <h4>${topic.name}</h4>
+          <p>${topic.desc}</p>
+        </div>
+      `;
+
+      item.addEventListener('click', () => {
+        if (selected.has(topic.id)) {
+          selected.delete(topic.id);
+          item.classList.remove('selected');
+        } else {
+          selected.add(topic.id);
+          item.classList.add('selected');
+        }
+        updateModalCount();
+      });
+
+      modalTopics.appendChild(item);
+    });
+
+    updateModalCount();
+    topicModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
   }
 
-  gradeSelect.addEventListener('change', updateTopicsForGrade);
+  function updateModalCount() {
+    if (!activeModalSubject) return;
+    const count = (selectedTopics[activeModalSubject.id] || new Set()).size;
+    modalCount.textContent = `${count} topic${count !== 1 ? 's' : ''} selected`;
+  }
+
+  function closeTopicModal() {
+    topicModal.classList.remove('open');
+    document.body.style.overflow = '';
+    activeModalSubject = null;
+    // Re-render subject cards to update badge counts
+    renderSubjects();
+  }
+
+  modalClose.addEventListener('click', closeTopicModal);
+  modalDone.addEventListener('click', closeTopicModal);
+  topicModal.addEventListener('click', (e) => {
+    if (e.target === topicModal) closeTopicModal();
+  });
+
+  // ══════════════════════════════════════
+  //  Navigation & Validation
+  // ══════════════════════════════════════
 
   function goToStep(step) {
     steps.forEach(s => s.classList.remove('active'));
@@ -238,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (n === step) s.classList.add('active');
     });
     document.getElementById(`step${step}`).classList.add('active');
-    progFill.style.width = `${((step - 1) / 2) * 100}%`;
+    progFill.style.width = `${((step - 1) / 1) * 100}%`;
     currentStep = step;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -251,26 +277,53 @@ document.addEventListener('DOMContentLoaded', () => {
       const group = el.closest('.form-group');
       if (!el.value.trim()) {
         group.classList.add('has-error');
-        if (!group.querySelector('.error-text')) { const err = document.createElement('div'); err.className = 'error-text'; err.textContent = 'This field is required'; group.appendChild(err); }
+        if (!group.querySelector('.error-text')) {
+          const err = document.createElement('div');
+          err.className = 'error-text';
+          err.textContent = 'This field is required';
+          group.appendChild(err);
+        }
         valid = false;
-      } else { group.classList.remove('has-error'); const err = group.querySelector('.error-text'); if (err) err.remove(); }
+      } else {
+        group.classList.remove('has-error');
+        const err = group.querySelector('.error-text');
+        if (err) err.remove();
+      }
     });
     // Validate school selection
     if (!hiddenSchool.value) {
       const group = schoolSearch.closest('.form-group');
       group.classList.add('has-error');
-      if (!group.querySelector('.error-text')) { const err = document.createElement('div'); err.className = 'error-text'; err.textContent = 'Please search and select your school'; group.appendChild(err); }
+      if (!group.querySelector('.error-text')) {
+        const err = document.createElement('div');
+        err.className = 'error-text';
+        err.textContent = 'Please search and select your school';
+        group.appendChild(err);
+      }
       valid = false;
     } else {
       const group = schoolSearch.closest('.form-group');
       group.classList.remove('has-error');
-      const err = group.querySelector('.error-text'); if (err) err.remove();
+      const err = group.querySelector('.error-text');
+      if (err) err.remove();
     }
     return valid;
   }
 
+  function getTotalSelectedTopics() {
+    let total = 0;
+    Object.values(selectedTopics).forEach(set => { total += set.size; });
+    return total;
+  }
+
   // ── Helper: build profile data from form ──
   function buildProfileData() {
+    // Build a clean map: { subjectId: [topicId, ...] }
+    const topics = {};
+    Object.entries(selectedTopics).forEach(([subjId, topicSet]) => {
+      if (topicSet.size > 0) topics[subjId] = Array.from(topicSet);
+    });
+
     return {
       first_name: document.getElementById('firstName').value.trim(),
       last_name: document.getElementById('lastName').value.trim(),
@@ -278,8 +331,7 @@ document.addEventListener('DOMContentLoaded', () => {
       state: stateSelect.value,
       township: hiddenTownship.value,
       high_school: hiddenSchool.value,
-      science_topics: Array.from(selectedScience),
-      finance_topics: Array.from(selectedFinance),
+      selected_topics: topics,
       email: currentUser.email || '',
     };
   }
@@ -301,33 +353,34 @@ document.addEventListener('DOMContentLoaded', () => {
     return false;
   }
 
+  // ══════════════════════════════════════
+  //  Button Handlers
+  // ══════════════════════════════════════
+
   document.getElementById('toStep2').addEventListener('click', async () => {
     if (!validateStep1()) return;
-    updateTopicsForGrade();
+    renderSubjects();
     // Save personal info to DB
     const data = buildProfileData();
     saveProfileToDb(data);
     goToStep(2);
   });
-  document.getElementById('toStep3').addEventListener('click', async () => {
-    if (selectedScience.size === 0) { alert('Please select at least one science topic.'); return; }
-    // Save with science topics
-    const data = buildProfileData();
-    saveProfileToDb(data);
-    goToStep(3);
-  });
+
   document.getElementById('backToStep1').addEventListener('click', () => goToStep(1));
-  document.getElementById('backToStep2').addEventListener('click', () => goToStep(2));
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    if (selectedFinance.size === 0) { alert('Please select at least one finance topic.'); return; }
+
+    if (getTotalSelectedTopics() === 0) {
+      alert('Please select at least one topic from any subject.');
+      return;
+    }
 
     const submitBtn = document.getElementById('submitProfile');
     const btnText = submitBtn.querySelector('.btn-text');
     const btnSpinner = submitBtn.querySelector('.btn-spinner');
     submitBtn.disabled = true;
-    btnText.textContent = 'Creating your profile...';
+    btnText.textContent = 'Creating your study plan...';
     btnSpinner.classList.remove('hidden');
 
     const profileData = buildProfileData();
