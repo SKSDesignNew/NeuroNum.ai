@@ -49,9 +49,19 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function redirectAfterAuth() {
-  // Check if profile already exists
+  // Check if profile already exists (only if API is reachable)
   try {
-    const res = await authFetch('/api/profile');
+    const tokens = getTokens();
+    if (!tokens) {
+      window.location.href = 'profile.html';
+      return;
+    }
+    const res = await fetch(`${API_BASE}/api/profile`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${tokens.idToken}`,
+      },
+    });
     if (res.ok) {
       // Profile exists — go to dashboard
       const data = await res.json();
@@ -60,7 +70,7 @@ async function redirectAfterAuth() {
       return;
     }
   } catch (e) {
-    // Profile doesn't exist or API not reachable — go to profile form
+    // Profile API not reachable — go to profile form
   }
   window.location.href = 'profile.html';
 }
