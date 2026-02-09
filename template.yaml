@@ -83,7 +83,6 @@ Resources:
   UserPool:
     Type: AWS::Cognito::UserPool
     Properties:
-      UserPoolName: neuronum-users
       AutoVerifiedAttributes:
         - email
       UsernameAttributes:
@@ -167,7 +166,6 @@ Resources:
   ProfilesTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: neuronum-profiles
       BillingMode: PAY_PER_REQUEST
       AttributeDefinitions:
         - AttributeName: userId
@@ -182,7 +180,6 @@ Resources:
   NeuronumApi:
     Type: AWS::Serverless::Api
     Properties:
-      Name: neuronum-api
       StageName: !Ref StageName
       Cors:
         AllowMethods: "'GET, PUT, POST, OPTIONS'"
@@ -201,7 +198,6 @@ Resources:
   GenerateNotesFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: neuronum-generate-notes
       CodeUri: lambda/
       Handler: index.handler
       Description: Generates AI study notes via Claude and Gemini
@@ -233,7 +229,6 @@ Resources:
   ProfileFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: neuronum-profile
       CodeUri: lambda/
       Handler: profile.handler
       Description: User profile CRUD (DynamoDB)
