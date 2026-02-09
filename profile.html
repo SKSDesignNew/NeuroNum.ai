@@ -118,15 +118,12 @@
           </div>
 
           <div class="form-group">
-            <label for="township">School Township / District <span class="req">*</span></label>
-            <select id="township" name="township" required disabled>
-              <option value="">Select state first</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="highSchool">Name of High School <span class="req">*</span></label>
-            <input type="text" id="highSchool" name="highSchool" required placeholder="e.g. Lincoln High School" />
+            <label for="schoolSearch">Search Your High School <span class="req">*</span></label>
+            <input type="text" id="schoolSearch" placeholder="Start typing your school name..." autocomplete="off" disabled />
+            <div class="school-results" id="schoolResults"></div>
+            <input type="hidden" id="highSchool" name="highSchool" required />
+            <input type="hidden" id="township" name="township" />
+            <div class="selected-school" id="selectedSchool"></div>
           </div>
 
           <div class="form-actions">

@@ -73,7 +73,16 @@ const FINANCE_TOPICS = {
   ],
 };
 
-const STATE_TOWNSHIPS = {"AL":{"name":"Alabama","townships":["Birmingham City Schools","Huntsville City Schools","Mobile County Schools","Montgomery County Schools","Tuscaloosa City Schools","Jefferson County Schools"]},"AK":{"name":"Alaska","townships":["Anchorage School District","Fairbanks North Star Borough","Matanuska-Susitna Borough","Juneau Borough Schools","Kenai Peninsula Borough"]},"AZ":{"name":"Arizona","townships":["Mesa Unified","Chandler Unified","Gilbert Unified","Scottsdale Unified","Tucson Unified","Phoenix Union High School District","Tempe Union High School District"]},"AR":{"name":"Arkansas","townships":["Little Rock School District","Bentonville Schools","Springdale School District","Rogers School District","Fort Smith Public Schools"]},"CA":{"name":"California","townships":["Los Angeles Unified","San Diego Unified","San Francisco Unified","Fresno Unified","Long Beach Unified","Oakland Unified","Sacramento City Unified","San Jose Unified","Irvine Unified"]},"CO":{"name":"Colorado","townships":["Denver Public Schools","Douglas County Schools","Jefferson County Schools","Cherry Creek Schools","Boulder Valley School District","Aurora Public Schools"]},"CT":{"name":"Connecticut","townships":["Hartford Public Schools","New Haven Public Schools","Fairfield Public Schools","Stamford Public Schools","Greenwich Public Schools","Bridgeport Public Schools"]},"DE":{"name":"Delaware","townships":["Christina School District","Red Clay Consolidated","Brandywine School District","Colonial School District","Cape Henlopen School District"]},"FL":{"name":"Florida","townships":["Miami-Dade County Schools","Broward County Schools","Hillsborough County Schools","Orange County Schools","Palm Beach County Schools","Duval County Schools","Pinellas County Schools"]},"GA":{"name":"Georgia","townships":["Atlanta Public Schools","Gwinnett County Schools","Cobb County Schools","DeKalb County Schools","Fulton County Schools","Cherokee County Schools"]},"HI":{"name":"Hawaii","townships":["Hawaii Department of Education (Statewide)"]},"ID":{"name":"Idaho","townships":["Boise Independent District","West Ada School District","Nampa School District","Idaho Falls District","Pocatello/Chubbuck District"]},"IL":{"name":"Illinois","townships":["Chicago Public Schools","Naperville CUSD 203","Indian Prairie CUSD 204","Rockford Public Schools","Springfield District 186","Peoria Public Schools"]},"IN":{"name":"Indiana","townships":["Indianapolis Public Schools","Fort Wayne Community Schools","Evansville-Vanderburgh Schools","Carmel Clay Schools","Hamilton Southeastern Schools"]},"IA":{"name":"Iowa","townships":["Des Moines Public Schools","Cedar Rapids Community SD","Iowa City Community SD","Davenport Community SD","West Des Moines Community SD"]},"KS":{"name":"Kansas","townships":["Wichita Public Schools","Shawnee Mission SD","Blue Valley Schools","Olathe Public Schools","Lawrence Public Schools"]},"KY":{"name":"Kentucky","townships":["Jefferson County Public Schools","Fayette County Schools","Kenton County Schools","Boone County Schools","Hardin County Schools"]},"LA":{"name":"Louisiana","townships":["East Baton Rouge Parish Schools","Jefferson Parish Schools","Orleans Parish Schools","St. Tammany Parish Schools","Caddo Parish Schools"]},"ME":{"name":"Maine","townships":["Portland Public Schools","Lewiston Public Schools","Bangor School Department","South Portland Schools","Scarborough Schools"]},"MD":{"name":"Maryland","townships":["Montgomery County Public Schools","Prince George's County Schools","Baltimore County Schools","Anne Arundel County Schools","Howard County Schools"]},"MA":{"name":"Massachusetts","townships":["Boston Public Schools","Worcester Public Schools","Springfield Public Schools","Cambridge Public Schools","Newton Public Schools","Brookline Public Schools"]},"MI":{"name":"Michigan","townships":["Detroit Public Schools","Ann Arbor Public Schools","Grand Rapids Public Schools","Dearborn Public Schools","Troy School District","Novi Community Schools"]},"MN":{"name":"Minnesota","townships":["Minneapolis Public Schools","St. Paul Public Schools","Anoka-Hennepin Schools","Rosemount-Apple Valley-Eagan","Minnetonka Public Schools","Eden Prairie Schools"]},"MS":{"name":"Mississippi","townships":["Jackson Public Schools","DeSoto County Schools","Rankin County Schools","Madison County Schools","Gulfport School District"]},"MO":{"name":"Missouri","townships":["St. Louis Public Schools","Kansas City Public Schools","Springfield Public Schools","Columbia Public Schools","Rockwood R-VI School District"]},"MT":{"name":"Montana","townships":["Billings Public Schools","Missoula County Schools","Great Falls Public Schools","Helena Public Schools","Bozeman Public Schools"]},"NE":{"name":"Nebraska","townships":["Omaha Public Schools","Lincoln Public Schools","Millard Public Schools","Bellevue Public Schools","Elkhorn Public Schools"]},"NV":{"name":"Nevada","townships":["Clark County School District","Washoe County School District","Carson City School District","Elko County School District"]},"NH":{"name":"New Hampshire","townships":["Manchester School District","Nashua School District","Concord School District","Dover School District","Salem School District"]},"NJ":{"name":"New Jersey","townships":["Newark Public Schools","Jersey City Public Schools","Edison Township Schools","Toms River Regional Schools","Cherry Hill Public Schools","Montclair Public Schools","Princeton Public Schools","Westfield Public Schools"]},"NM":{"name":"New Mexico","townships":["Albuquerque Public Schools","Las Cruces Public Schools","Santa Fe Public Schools","Rio Rancho Public Schools","Gadsden Independent Schools"]},"NY":{"name":"New York","townships":["New York City DOE","Buffalo Public Schools","Rochester City Schools","Yonkers Public Schools","Syracuse City Schools","Long Island Schools","Westchester County Schools"]},"NC":{"name":"North Carolina","townships":["Charlotte-Mecklenburg Schools","Wake County Schools","Guilford County Schools","Durham Public Schools","Forsyth County Schools","Cumberland County Schools"]},"ND":{"name":"North Dakota","townships":["Fargo Public Schools","Bismarck Public Schools","Grand Forks Public Schools","West Fargo Public Schools","Minot Public Schools"]},"OH":{"name":"Ohio","townships":["Columbus City Schools","Cleveland Metropolitan SD","Cincinnati Public Schools","Dublin City Schools","Lakota Local Schools","Olentangy Local Schools"]},"OK":{"name":"Oklahoma","townships":["Oklahoma City Public Schools","Tulsa Public Schools","Edmond Public Schools","Norman Public Schools","Broken Arrow Public Schools"]},"OR":{"name":"Oregon","townships":["Portland Public Schools","Salem-Keizer School District","Beaverton School District","Eugene School District 4J","Hillsboro School District"]},"PA":{"name":"Pennsylvania","townships":["Philadelphia City Schools","Pittsburgh Public Schools","Lower Merion School District","Central Bucks School District","North Penn School District","State College Area SD"]},"RI":{"name":"Rhode Island","townships":["Providence Public Schools","Cranston Public Schools","Warwick Public Schools","East Greenwich Schools","Barrington Public Schools"]},"SC":{"name":"South Carolina","townships":["Greenville County Schools","Charleston County Schools","Richland School District","Horry County Schools","Lexington County Schools"]},"SD":{"name":"South Dakota","townships":["Sioux Falls School District","Rapid City Area Schools","Aberdeen School District","Brandon Valley School District","Harrisburg School District"]},"TN":{"name":"Tennessee","townships":["Metro Nashville Public Schools","Shelby County Schools","Knox County Schools","Hamilton County Schools","Williamson County Schools","Rutherford County Schools"]},"TX":{"name":"Texas","townships":["Houston ISD","Dallas ISD","Austin ISD","San Antonio ISD","Fort Worth ISD","Plano ISD","Frisco ISD","Katy ISD","Round Rock ISD"]},"UT":{"name":"Utah","townships":["Granite School District","Davis School District","Jordan School District","Alpine School District","Canyons School District"]},"VT":{"name":"Vermont","townships":["Burlington School District","Rutland City Schools","South Burlington Schools","Essex Westford School District","Brattleboro Schools"]},"VA":{"name":"Virginia","townships":["Fairfax County Public Schools","Loudoun County Schools","Prince William County Schools","Virginia Beach City Schools","Henrico County Schools","Chesterfield County Schools"]},"WA":{"name":"Washington","townships":["Seattle Public Schools","Spokane Public Schools","Tacoma Public Schools","Kent School District","Lake Washington School District","Bellevue School District"]},"WV":{"name":"West Virginia","townships":["Kanawha County Schools","Cabell County Schools","Berkeley County Schools","Monongalia County Schools","Wood County Schools"]},"WI":{"name":"Wisconsin","townships":["Milwaukee Public Schools","Madison Metropolitan SD","Green Bay Area Schools","Kenosha Unified SD","Racine Unified SD","Waukesha School District"]},"WY":{"name":"Wyoming","townships":["Laramie County School District","Natrona County Schools","Sweetwater County SD","Fremont County School District","Campbell County Schools"]},"DC":{"name":"Washington D.C.","townships":["DC Public Schools","DC Public Charter Schools"]}};
+// ── SchoolDigger API config ──
+const SCHOOL_API = {
+  base: 'https://api.schooldigger.com/v2.0/schools',
+  appID: '909dc541',
+  appKey: '0e200e8a029b0eb577edce68b61de454',
+};
+
+const US_STATES = {
+  AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',CO:'Colorado',CT:'Connecticut',DE:'Delaware',FL:'Florida',GA:'Georgia',HI:'Hawaii',ID:'Idaho',IL:'Illinois',IN:'Indiana',IA:'Iowa',KS:'Kansas',KY:'Kentucky',LA:'Louisiana',ME:'Maine',MD:'Maryland',MA:'Massachusetts',MI:'Michigan',MN:'Minnesota',MS:'Mississippi',MO:'Missouri',MT:'Montana',NE:'Nebraska',NV:'Nevada',NH:'New Hampshire',NJ:'New Jersey',NM:'New Mexico',NY:'New York',NC:'North Carolina',ND:'North Dakota',OH:'Ohio',OK:'Oklahoma',OR:'Oregon',PA:'Pennsylvania',RI:'Rhode Island',SC:'South Carolina',SD:'South Dakota',TN:'Tennessee',TX:'Texas',UT:'Utah',VT:'Vermont',VA:'Virginia',WA:'Washington',WV:'West Virginia',WI:'Wisconsin',WY:'Wyoming',DC:'Washington D.C.'
+};
 
 document.addEventListener('DOMContentLoaded', () => {
   const currentUser = requireAuth();
@@ -86,30 +95,100 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentStep = 1;
 
   const stateSelect = document.getElementById('state');
-  const townSelect = document.getElementById('township');
+  const schoolSearch = document.getElementById('schoolSearch');
+  const schoolResults = document.getElementById('schoolResults');
+  const hiddenSchool = document.getElementById('highSchool');
+  const hiddenTownship = document.getElementById('township');
+  const selectedSchoolEl = document.getElementById('selectedSchool');
+  let searchTimeout = null;
 
-  Object.entries(STATE_TOWNSHIPS)
-    .sort((a, b) => a[1].name.localeCompare(b[1].name))
-    .forEach(([code, data]) => {
+  // Populate states
+  Object.entries(US_STATES)
+    .sort((a, b) => a[1].localeCompare(b[1]))
+    .forEach(([code, name]) => {
       const opt = document.createElement('option');
       opt.value = code;
-      opt.textContent = data.name;
+      opt.textContent = name;
       stateSelect.appendChild(opt);
     });
 
   stateSelect.addEventListener('change', () => {
-    const code = stateSelect.value;
-    townSelect.innerHTML = '<option value="">Select township / district</option>';
-    if (code && STATE_TOWNSHIPS[code]) {
-      townSelect.disabled = false;
-      STATE_TOWNSHIPS[code].townships.forEach(t => {
-        const opt = document.createElement('option');
-        opt.value = t;
-        opt.textContent = t;
-        townSelect.appendChild(opt);
+    schoolSearch.disabled = !stateSelect.value;
+    schoolSearch.value = '';
+    hiddenSchool.value = '';
+    hiddenTownship.value = '';
+    selectedSchoolEl.classList.remove('visible');
+    selectedSchoolEl.innerHTML = '';
+    schoolResults.classList.remove('open');
+    if (stateSelect.value) schoolSearch.placeholder = 'Start typing your school name...';
+    else schoolSearch.placeholder = 'Select state first';
+  });
+
+  // School search with debounce
+  schoolSearch.addEventListener('input', () => {
+    clearTimeout(searchTimeout);
+    const query = schoolSearch.value.trim();
+    const st = stateSelect.value;
+    if (query.length < 2 || !st) { schoolResults.classList.remove('open'); return; }
+    schoolResults.innerHTML = '<div class="school-search-loading">Searching...</div>';
+    schoolResults.classList.add('open');
+    searchTimeout = setTimeout(() => fetchSchools(st, query), 350);
+  });
+
+  async function fetchSchools(st, query) {
+    try {
+      const params = new URLSearchParams({
+        st, q: query, level: 'High', perPage: '15',
+        appID: SCHOOL_API.appID, appKey: SCHOOL_API.appKey,
       });
-    } else {
-      townSelect.disabled = true;
+      const res = await fetch(`${SCHOOL_API.base}?${params}`);
+      if (!res.ok) throw new Error('API error');
+      const data = await res.json();
+      renderSchoolResults(data.schoolList || []);
+    } catch (e) {
+      schoolResults.innerHTML = '<div class="school-search-loading">Search unavailable. Please try again.</div>';
+    }
+  }
+
+  function renderSchoolResults(schools) {
+    if (schools.length === 0) {
+      schoolResults.innerHTML = '<div class="school-search-loading">No high schools found. Try a different name.</div>';
+      return;
+    }
+    schoolResults.innerHTML = '';
+    schools.forEach(s => {
+      const item = document.createElement('div');
+      item.className = 'school-result-item';
+      const addr = s.address || {};
+      const district = s.district ? s.district.districtName : '';
+      item.innerHTML = `<div class="school-name">${s.schoolName}</div><div class="school-detail">${addr.city || ''}, ${addr.state || ''} — ${district}</div>`;
+      item.addEventListener('click', () => selectSchool(s));
+      schoolResults.appendChild(item);
+    });
+  }
+
+  function selectSchool(s) {
+    const addr = s.address || {};
+    const district = s.district ? s.district.districtName : '';
+    hiddenSchool.value = s.schoolName;
+    hiddenTownship.value = district;
+    schoolSearch.value = s.schoolName;
+    schoolResults.classList.remove('open');
+    selectedSchoolEl.innerHTML = `<span>${s.schoolName} — ${district}, ${addr.city || ''}</span><span class="clear-school" id="clearSchool">✕ Change</span>`;
+    selectedSchoolEl.classList.add('visible');
+    document.getElementById('clearSchool').addEventListener('click', () => {
+      hiddenSchool.value = '';
+      hiddenTownship.value = '';
+      schoolSearch.value = '';
+      selectedSchoolEl.classList.remove('visible');
+      schoolSearch.focus();
+    });
+  }
+
+  // Close results on outside click
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('#schoolSearch') && !e.target.closest('#schoolResults')) {
+      schoolResults.classList.remove('open');
     }
   });
 
@@ -165,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function validateStep1() {
-    const fields = ['firstName', 'lastName', 'grade', 'state', 'township', 'highSchool'];
+    const fields = ['firstName', 'lastName', 'grade', 'state'];
     let valid = true;
     fields.forEach(id => {
       const el = document.getElementById(id);
@@ -176,6 +255,17 @@ document.addEventListener('DOMContentLoaded', () => {
         valid = false;
       } else { group.classList.remove('has-error'); const err = group.querySelector('.error-text'); if (err) err.remove(); }
     });
+    // Validate school selection
+    if (!hiddenSchool.value) {
+      const group = schoolSearch.closest('.form-group');
+      group.classList.add('has-error');
+      if (!group.querySelector('.error-text')) { const err = document.createElement('div'); err.className = 'error-text'; err.textContent = 'Please search and select your school'; group.appendChild(err); }
+      valid = false;
+    } else {
+      const group = schoolSearch.closest('.form-group');
+      group.classList.remove('has-error');
+      const err = group.querySelector('.error-text'); if (err) err.remove();
+    }
     return valid;
   }
 
